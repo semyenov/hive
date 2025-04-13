@@ -75,5 +75,8 @@
     "vitest": "3.0.5",
     "zod": "3.24.1",
     "zod-validation-error": "3.4.0"
+  },
+  "dependencies": {
+    "apollo-server": "^3.13.0"
   }
 }

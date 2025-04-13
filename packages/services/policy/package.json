@@ -31,5 +31,8 @@
       "backend"
     ],
     "banner": "../../../scripts/banner.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.12.0"
   }
 }

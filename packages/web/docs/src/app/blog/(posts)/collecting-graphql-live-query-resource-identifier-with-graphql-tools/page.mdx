@@ -315,7 +315,7 @@ const result = execute({
 
 I had to wrap the "user" context in a context (context-ception 🤯) on which I also attached the
 function for adding the resource identifier to the resource identifier set. I got inspired for this
-by the apollo-server source code, as I knew it has a way for measuring resolver execution time,
+by the @apollo/server source code, as I knew it has a way for measuring resolver execution time,
 which must be done on a request/operation basis similar to the resource identifier collection. This
 method allows using a new function/context for each execution. Inside the field resolver, the
 correct user context is then passed into the actual (user) field resolver.

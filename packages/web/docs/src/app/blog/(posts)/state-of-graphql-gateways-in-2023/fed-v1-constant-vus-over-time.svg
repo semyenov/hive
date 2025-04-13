@@ -264,7 +264,7 @@
                     text-anchor="end"
                     transform="translate(432.8333333333333,7) rotate(270) translate(0,3)"
                   >
-                    apollo-server
+                    @apollo/server
                   </text>
                   <text
                     fill="white"
@@ -274,7 +274,7 @@
                     text-anchor="end"
                     transform="translate(499.5,7) rotate(270) translate(0,3)"
                   >
-                    apollo-server-node16
+                    @apollo/server-node16
                   </text>
                   <text
                     fill="white"
@@ -594,14 +594,14 @@
               role="graphics-symbol"
             />
             <path
-              aria-label="gateway-setup: apollo-server; rps: 69"
+              aria-label="gateway-setup: @apollo/server; rps: 69"
               aria-roledescription="bar"
               d="M403.3333333333333,246.66666666666669h60.00000000000001v153.33333333333331h-60.00000000000001Z"
               fill="#4c78a8"
               role="graphics-symbol"
             />
             <path
-              aria-label="gateway-setup: apollo-server-node16; rps: 67"
+              aria-label="gateway-setup: @apollo/server-node16; rps: 67"
               aria-roledescription="bar"
               d="M470,251.11111111111111h60.00000000000001v148.88888888888889h-60.00000000000001Z"
               fill="#4c78a8"

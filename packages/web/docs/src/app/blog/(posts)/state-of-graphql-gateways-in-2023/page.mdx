@@ -100,7 +100,7 @@ between GraphQL gateways:
 
 For the benchmark, we picked the following gateways:
 
-1. [**Apollo-Server**](https://www.apollographql.com/docs/apollo-server/): a JS/TS library for
+1. [**Apollo-Server**](https://www.apollographql.com/docs/@apollo/server/): a JS/TS library for
    implementing GraphQL servers or gateways.
 2. [**Apollo-Router**](https://www.apollographql.com/docs/router/): the Rust-based product for
    running Apollo Federation.
@@ -142,17 +142,17 @@ different entities across multiple subgraphs, and some fragments spreads).
 - **CPU limit:** 2
 - **Memory limit:** 4GB
 
-| Gateway              | RPS ⬇️ |        Requests         |         Duration         | Notes                                                                        |
-| :------------------- | :----: | :---------------------: | :----------------------: | :--------------------------------------------------------------------------- |
-| apollo-router        |  175   | 105605 total, 0 failed  | avg: 923ms, p95: 2598ms  | ✅                                                                           |
-| wundergraph          |  168   | 100951 total, 0 failed  | avg: 900ms, p95: 2583ms  | ✅                                                                           |
-| mesh-supergraph-bun  |  120   |  72820 total, 0 failed  | avg: 2400ms, p95: 4116ms | ✅                                                                           |
-| mesh-bun             |  111   |  67229 total, 0 failed  | avg: 2606ms, p95: 4439ms | ✅                                                                           |
-| mesh                 |   94   |  57124 total, 0 failed  | avg: 3092ms, p95: 3723ms | ✅                                                                           |
-| mesh-supergraph      |   94   |  56839 total, 0 failed  | avg: 3109ms, p95: 3815ms | ✅                                                                           |
-| apollo-server        |   69   | 41971 total, 980 failed | avg: 4282ms, p95: 3174ms | ❌ 980 failed requests, 980 non-200 responses, 980 unexpected GraphQL errors |
-| apollo-server-node16 |   67   |  40578 total, 0 failed  | avg: 4432ms, p95: 6252ms | ✅                                                                           |
-| mercurius            |   50   | 30432 total, 50 failed  | avg: 5912ms, p95: 6121ms | ❌ 50 failed requests                                                        |
+| Gateway               | RPS ⬇️ |        Requests         |         Duration         | Notes                                                                        |
+| :-------------------- | :----: | :---------------------: | :----------------------: | :--------------------------------------------------------------------------- |
+| apollo-router         |  175   | 105605 total, 0 failed  | avg: 923ms, p95: 2598ms  | ✅                                                                           |
+| wundergraph           |  168   | 100951 total, 0 failed  | avg: 900ms, p95: 2583ms  | ✅                                                                           |
+| mesh-supergraph-bun   |  120   |  72820 total, 0 failed  | avg: 2400ms, p95: 4116ms | ✅                                                                           |
+| mesh-bun              |  111   |  67229 total, 0 failed  | avg: 2606ms, p95: 4439ms | ✅                                                                           |
+| mesh                  |   94   |  57124 total, 0 failed  | avg: 3092ms, p95: 3723ms | ✅                                                                           |
+| mesh-supergraph       |   94   |  56839 total, 0 failed  | avg: 3109ms, p95: 3815ms | ✅                                                                           |
+| @apollo/server        |   69   | 41971 total, 980 failed | avg: 4282ms, p95: 3174ms | ❌ 980 failed requests, 980 non-200 responses, 980 unexpected GraphQL errors |
+| @apollo/server-node16 |   67   |  40578 total, 0 failed  | avg: 4432ms, p95: 6252ms | ✅                                                                           |
+| mercurius             |   50   | 30432 total, 50 failed  | avg: 5912ms, p95: 6121ms | ❌ 50 failed requests                                                        |
 
 export const Card = ({ children }) => (
   <div className="rounded-lg border border-blue-200/40 bg-[#151d36] p-3 text-gray-200 dark:border-blue-200/30 dark:bg-blue-900/30 dark:text-blue-200 [&_img]:w-full">
@@ -166,7 +166,7 @@ Here are some insights worth mentioning:
 
 ✅ Almost gateways tested were able to process all requests without any failures (side note: when
 CPU limit is lower, some JS gateways are failing to respond to requests, and the requests are
-failing with a timeout or connecting drop, as you can see with `apollo-server` on Node.js 18).
+failing with a timeout or connecting drop, as you can see with `@apollo/server` on Node.js 18).
 
 🏆 **Apollo-Router** and **Wundergraph** are the fastest gateways, with an average response time of
 900ms and a p95 of 2500ms, while under pressure of incoming requests.
@@ -201,7 +201,7 @@ realistic scenario.
 | mesh-bun            |  103   | 62060 total, 0 failed  |  avg: 2832ms, p95: 4791ms  | ✅                                                                        |
 | mesh-supergraph     |  101   | 61344 total, 0 failed  |  avg: 2875ms, p95: 3437ms  | ✅                                                                        |
 | mesh                |   93   | 56112 total, 0 failed  |  avg: 3154ms, p95: 3838ms  | ✅                                                                        |
-| apollo-server       |   64   | 38683 total, 92 failed |  avg: 4652ms, p95: 6050ms  | ❌ 92 failed requests, 92 non-200 responses, 92 unexpected GraphQL errors |
+| @apollo/server      |   64   | 38683 total, 92 failed |  avg: 4652ms, p95: 6050ms  | ❌ 92 failed requests, 92 non-200 responses, 92 unexpected GraphQL errors |
 | mercurius           |   12   |  7838 total, 0 failed  | avg: 23393ms, p95: 24457ms | ✅                                                                        |
 
 <Card>![](./fed-v1-constants-vus-subgraphs-delay.svg)</Card>
@@ -242,7 +242,7 @@ more concurrent VUs.
 | mesh-bun            |  102   |  61716 total, 0 failed   |  avg: 4756ms, p95: 7949ms  | ✅                                                                              |
 | mesh-supergraph     |  102   |  61806 total, 0 failed   |  avg: 4746ms, p95: 5971ms  | ✅                                                                              |
 | mesh                |   95   |  57722 total, 0 failed   |  avg: 5109ms, p95: 5981ms  | ✅                                                                              |
-| apollo-server       |   67   | 40608 total, 2610 failed | avg: 7387ms, p95: 59998ms  | ❌ 2610 failed requests, 2610 non-200 responses, 2610 unexpected GraphQL errors |
+| @apollo/server      |   67   | 40608 total, 2610 failed | avg: 7387ms, p95: 59998ms  | ❌ 2610 failed requests, 2610 non-200 responses, 2610 unexpected GraphQL errors |
 | mercurius           |   12   |   7941 total, 0 failed   | avg: 38437ms, p95: 41293ms | ✅                                                                              |
 
 <Card>![](./fed-v1-constants-vus-subgraphs-delay-resources.svg)</Card>
@@ -256,7 +256,7 @@ memory consumption (almost 3GB).
 📈 The ability of **GraphQL-Mesh** to use Node.js' `cluster` feature pays off when more CPUs are
 available to use.
 
-📊 Under pressure, `apollo-server` (JS) was not able to some percentage of the requests.
+📊 Under pressure, `@apollo/server` (JS) was not able to some percentage of the requests.
 
 ### `ramping-vus`
 
@@ -282,7 +282,7 @@ The chart below measures the **p95** of the request duration (lower is better).
 | mesh-supergraph     |     18031ms     | 105 |  64859 total, 0 failed   |  avg: 9598ms, p95: 18032ms, max: 25650ms, med: 9483ms  | ✅                                                                              |
 | mesh-bun            |     18066ms     | 109 |  67768 total, 0 failed   |  avg: 9245ms, p95: 18067ms, max: 44697ms, med: 8680ms  | ✅                                                                              |
 | mesh                |     19777ms     | 98  |  60981 total, 0 failed   | avg: 10275ms, p95: 19777ms, max: 27667ms, med: 10122ms | ✅                                                                              |
-| apollo-server       |     60000ms     | 75  | 48009 total, 7489 failed | avg: 13363ms, p95: 60001ms, max: 60717ms, med: 4289ms  | ❌ 7489 failed requests, 7489 non-200 responses, 7489 unexpected GraphQL errors |
+| @apollo/server      |     60000ms     | 75  | 48009 total, 7489 failed | avg: 13363ms, p95: 60001ms, max: 60717ms, med: 4289ms  | ❌ 7489 failed requests, 7489 non-200 responses, 7489 unexpected GraphQL errors |
 
 <Card>![](./fed-v1-ramping-vus.svg)</Card>
 
@@ -300,10 +300,10 @@ respond to requests (with a timeout or connection drop). From the JS-based solut
 Here are some important points to consider regarding the gateways tested in this benchmark:
 
 - **Federation specification compatibility:**
-  - Among the list of gateways tested, only `apollo-server`, `apollo-router`, and `graphql-mesh`
+  - Among the list of gateways tested, only `@apollo/server`, `apollo-router`, and `graphql-mesh`
     fully support the Federation v1 specification without any adjustments. Other servers, such as
     `wundergraph`, do not have full support (Federation v2 specification is fully supported at the
-    moment only by `apollo-router`, `apollo-server` and `graphql-mesh`).
+    moment only by `apollo-router`, `@apollo/server` and `graphql-mesh`).
   - We used the Federation Supergraph specification during the server runs, which is an artifact
     produced from a successful composition of subgraphs. Some gateways, like `wundergraph` and
     `mercurius`, do not support this specification, and a list of services was provided with a

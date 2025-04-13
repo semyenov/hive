@@ -264,7 +264,7 @@
                     text-anchor="end"
                     transform="translate(487,7) rotate(270) translate(0,3)"
                   >
-                    apollo-server
+                    @apollo/server
                   </text>
                   <text
                     fill="white"
@@ -602,7 +602,7 @@
               role="graphics-symbol"
             />
             <path
-              aria-label="gateway-setup: apollo-server; rps: 67"
+              aria-label="gateway-setup: @apollo/server; rps: 67"
               aria-roledescription="bar"
               d="M453.75,266h67.5v134h-67.5Z"
               fill="#4c78a8"

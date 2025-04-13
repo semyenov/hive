@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "@graphql-hive/core": "workspace:*",
-    "@graphql-yoga/plugin-persisted-operations": "^3.9.0"
+    "@graphql-yoga/plugin-persisted-operations": "^3.9.0",
+    "@apollo/server": "^4.12.0"
   },
   "devDependencies": {
     "@graphql-tools/schema": "10.0.23",

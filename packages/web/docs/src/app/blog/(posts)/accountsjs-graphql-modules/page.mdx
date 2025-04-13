@@ -45,7 +45,7 @@ accounts-js and simplifies the integration for GraphQL-Modules-based projects.
 First install required dependencies from npm or yarn:
 
 ```sh
-yarn add mongodb @accounts/server @accounts/password @accounts/database-manager @accounts/mongo @accounts/graphql-api @graphql-modules/core apollo-server graphql-import-node
+yarn add mongodb @accounts/server @accounts/password @accounts/database-manager @accounts/mongo @accounts/graphql-api @graphql-modules/core @apollo/server graphql-import-node
 ```
 
 Let's assume that we're using MongoDB as our database, password-based authentication and
@@ -53,13 +53,13 @@ ApolloServer:
 
 ```ts
 import 'graphql-import-node'
-import { ApolloServer } from 'apollo-server'
 import { MongoClient } from 'mongodb'
 import { DatabaseManager } from '@accounts/database-manager'
 import { AccountsModule } from '@accounts/graphql-api'
 import MongoDBInterface from '@accounts/mongo'
 import { AccountsPassword } from '@accounts/password'
 import { AccountsServer } from '@accounts/server'
+import { ApolloServer } from '@apollo/server'
 import { resolvers } from './resolvers'
 import * as typeDefs from './typeDefs.graphql'
 

@@ -47,10 +47,10 @@ Apollo Server provides mocks built-in scalars such as `Int` , `String` , `Float`
 each scalar in this package. You can add those easily in your server for mocking the schema.
 
 ```typescript
-import { ApolloServer } from 'apollo-server'
 // import all scalars and resolvers
 import { mocks, resolvers, typeDefs } from 'graphql-scalars'
 import { makeExecutableSchema } from 'graphql-tools'
+import { ApolloServer } from '@apollo/server'
 
 // Alternatively, import individual scalars and resolvers
 // import { DateTimeResolver, DateTimeTypeDefinition, DateTimeMock, ... } from "graphql-scalars"

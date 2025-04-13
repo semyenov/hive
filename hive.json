@@ -1,0 +1,6 @@
+{
+    "registry": {
+        "accessToken": "8894334a8d76a1036d1d98a986e2d2c8",
+        "endpoint": "http://localhost:3001/graphql"
+    }
+}

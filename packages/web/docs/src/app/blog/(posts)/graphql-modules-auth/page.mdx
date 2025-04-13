@@ -90,7 +90,7 @@ In the next chapter we'll dive in, and see how easy it's to implement in with Ap
 ## Getting Started with Authentication
 
 We'll start by implementing a simple authentication flow in GraphQL server (using
-[Apollo-Server 2.0](https://github.com/apollographql/apollo-server)).
+[Apollo-Server 2.0](https://github.com/apollographql/@apollo/server)).
 
 I'm assuming that you already have your own favorite way to authenticate, whether it's with headers,
 cookies or any other way. In the point of view of the server, we expect to get a token, and we'll
@@ -100,8 +100,8 @@ Let's start by creating a simple Apollo-Server instance, with a very simple sche
 exposing the `currentUser` as a query field.
 
 ```ts
-import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
+import { ApolloServer } from '@apollo/server'
 
 const typeDefs = gql`
   type Query {
@@ -142,8 +142,8 @@ export async function tradeTokenForUser(token: string): Promise<User> {
 ```
 
 ```ts
-import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
+import { ApolloServer } from '@apollo/server'
 import { tradeTokenForUser } from './auth-helpers'
 
 const HEADER_NAME = 'authorization'
@@ -193,8 +193,8 @@ builds it before the resolver getting called._
 Now, we can finally implement the `resolvers` for the server:
 
 ```ts
-import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
+import { ApolloServer } from '@apollo/server'
 import { tradeTokenForUser } from './auth-helpers'
 
 const HEADER_NAME = 'authorization'
@@ -270,8 +270,8 @@ export const authenticated = next => (root, args, context, info) => {
 ```
 
 ```ts
-import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
+import { ApolloServer } from '@apollo/server'
 import { tradeTokenForUser } from './auth-helpers'
 
 const HEADER_NAME = 'authorization'
@@ -343,8 +343,8 @@ Let's add `type Article` to the schema, and allow creating article only to users
 `EDITOR` . It's that simple:
 
 ```ts
-import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
+import { ApolloServer } from '@apollo/server'
 import { tradeTokenForUser } from './auth-helpers'
 import { authenticated } from './authenticated-guard'
 import { validateRole } from './validate-role'
@@ -553,7 +553,7 @@ export const resolversComposition = {
 ```
 
 ```ts filename="server.ts"
-import { ApolloServer } from 'apollo-server'
+import { ApolloServer } from '@apollo/server'
 import { resolversComposition } from './resolvers-composition'
 
 const app = new GraphQLModule({

@@ -23,10 +23,7 @@ export function getPublicEnvVars() {
 // When the nextjs config is loaded by Next CLI Sentry has `Integrations` property.
 // When nextjs starts and the `environment.js` is loaded, the Sentry object doesn't have the `Integrations` property, it' under `Sentry.default` property.
 // Dealing with esm/cjs/default exports is a pain, we all feel that pain...
-const Integrations =
-  'default' in Sentry
-    ? ((Sentry as any).default as typeof Sentry).Integrations
-    : Sentry.Integrations;
+const Integrations = Sentry.Integrations;
 
 // treat an empty string `''` as `undefined`
 const emptyString = <T extends zod.ZodType>(input: T) => {

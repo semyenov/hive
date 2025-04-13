@@ -50,7 +50,7 @@ import { createYoga } from 'graphql-yoga';
 1. Remove `@graphql-hive/client` from your dependencies.
 1. Install `@graphql-hive/apollo`.
 
-```diff filename="apollo-server.ts"
+```diff filename="@apollo/server.ts"
 import { ApolloServer } from '@apollo/server';
 - import { hiveApollo } from '@graphql-hive/client';
 + import { useHive } from '@graphql-hive/apollo';

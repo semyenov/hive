@@ -40,5 +40,8 @@
     "external": [
       "pg-native"
     ]
+  },
+  "dependencies": {
+    "@apollo/server": "^4.12.0"
   }
 }

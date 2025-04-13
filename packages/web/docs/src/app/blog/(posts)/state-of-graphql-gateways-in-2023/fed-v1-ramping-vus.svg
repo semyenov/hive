@@ -137,7 +137,7 @@
             </g>
           </g>
           <g
-            aria-label="X-axis titled 'gateway-setup' for a discrete scale with 7 values: apollo-server, mesh, mesh-bun, mesh-supergraph, mesh-supergraph-bun, apollo-router, wundergraph"
+            aria-label="X-axis titled 'gateway-setup' for a discrete scale with 7 values: @apollo/server, mesh, mesh-bun, mesh-supergraph, mesh-supergraph-bun, apollo-router, wundergraph"
             aria-roledescription="axis"
             class="mark-group role-axis"
             role="graphics-symbol"
@@ -212,7 +212,7 @@
                     text-anchor="end"
                     transform="translate(42.35714285714285,7) rotate(270) translate(0,3)"
                   >
-                    apollo-server
+                    @apollo/server
                   </text>
                   <text
                     fill="white"
@@ -636,7 +636,7 @@
               role="graphics-symbol"
             />
             <path
-              aria-label="gateway-setup: apollo-server; duration (p95): 60000"
+              aria-label="gateway-setup: @apollo/server; duration (p95): 60000"
               aria-roledescription="bar"
               d="M4.285714285714278,0h77.14285714285714v400h-77.14285714285714Z"
               fill="#4c78a8"

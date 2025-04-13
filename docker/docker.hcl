@@ -333,14 +333,14 @@ target "composition-federation-2" {
 target "app" {
   inherits = ["service-base", get_target()]
   contexts = {
-    dist = "${PWD}/packages/web/app/dist"
+    dist = "${PWD}/app/dist"
     shared = "${PWD}/docker/shared"
   }
   args = {
     SERVICE_DIR_NAME = "@hive/app"
     IMAGE_TITLE = "graphql-hive/app"
-    PORT = "3000"
     IMAGE_DESCRIPTION = "The app of the GraphQL Hive project."
+    PORT = "3000"
     HEALTHCHECK_CMD = "wget --spider -q http://127.0.0.1:$${PORT}/api/health"
   }
   tags = [

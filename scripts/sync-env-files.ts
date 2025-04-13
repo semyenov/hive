@@ -49,7 +49,11 @@ async function main() {
 
       if (env[key] === '<sync>' || env[key] === '') {
         modified = true;
-        env[key] = rootEnv[key] !== undefined ? rootEnv[key] : process.env[key];
+        if (rootEnv[key] !== undefined) {
+          env[key] = rootEnv[key];
+        } else if (process.env[key] !== undefined) {
+          env[key] = process.env[key];
+        }
       }
     }
 

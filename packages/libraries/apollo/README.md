@@ -6,7 +6,7 @@ other GraphQL APIs.
 
 ---
 
-[Documentation](https://the-guild.dev/graphql/hive/docs/other-integrations/apollo-server)
+[Documentation](https://the-guild.dev/graphql/hive/docs/other-integrations/@apollo/server)
 
 ## Migration from `@graphql-hive/client`
 

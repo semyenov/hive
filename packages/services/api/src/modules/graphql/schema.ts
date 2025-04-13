@@ -1,28 +1,28 @@
 import 'reflect-metadata';
-import { 
-  ObjectType, 
-  Field, 
-  ID, 
-  InputType, 
-  Resolver, 
-  Query, 
-  Mutation, 
-  Arg,
-  ArgsType,
-  Args,
-} from 'type-graphql';
-import { IsEmail, Length, IsOptional, IsEnum } from 'class-validator';
 import { randomUUID } from 'crypto';
+import { IsEmail, IsEnum, IsOptional, Length } from 'class-validator';
+import {
+  Arg,
+  Args,
+  ArgsType,
+  Field,
+  ID,
+  InputType,
+  Mutation,
+  ObjectType,
+  Query,
+  Resolver,
+} from 'type-graphql';
 
 export enum UserRole {
   ADMIN = 'ADMIN',
   USER = 'USER',
-  GUEST = 'GUEST'
+  GUEST = 'GUEST',
 }
 
 @ObjectType()
 export class User {
-  @Field(type => ID)
+  @Field(_type => ID)
   id: string;
 
   @Field()
@@ -33,32 +33,42 @@ export class User {
   @IsEmail()
   email: string;
 
-  @Field(type => UserRole)
+  @Field(_type => UserRole)
   role: UserRole;
 
   @Field({ nullable: true })
   @IsOptional()
   avatarUrl?: string;
 
-  @Field()
+  @Field({ nullable: false })
   createdAt: Date;
 
-  @Field({ nullable: true })
+  @Field({ nullable: false })
   @IsOptional()
   updatedAt?: Date;
+
+  constructor(partialData: Partial<User> = {}) {
+    this.id = partialData.id ?? randomUUID();
+    this.name = partialData.name ?? '';
+    this.email = partialData.email ?? '';
+    this.role = partialData.role ?? UserRole.USER;
+    this.avatarUrl = partialData.avatarUrl ?? '';
+    this.createdAt = partialData.createdAt ?? new Date();
+    this.updatedAt = partialData.updatedAt ?? new Date();
+  }
 }
 
 @InputType()
 export class CreateUserInput {
-  @Field()
+  @Field({ nullable: false })
   @Length(1, 255)
   name: string;
 
-  @Field()
+  @Field({ nullable: false })
   @IsEmail()
   email: string;
 
-  @Field(type => UserRole, { nullable: true })
+  @Field(_type => UserRole, { nullable: true })
   @IsOptional()
   @IsEnum(UserRole)
   role?: UserRole;
@@ -66,41 +76,42 @@ export class CreateUserInput {
   @Field({ nullable: true })
   @IsOptional()
   avatarUrl?: string;
+
+  constructor(partialData: Partial<CreateUserInput> = {}) {
+    this.name = partialData.name ?? '';
+    this.email = partialData.email ?? '';
+    this.role = partialData.role ?? UserRole.USER;
+    this.avatarUrl = partialData.avatarUrl ?? '';
+  }
 }
 
 @ArgsType()
 export class PaginationArgs {
-  @Field(type => Number, { nullable: true, defaultValue: 1 })
+  @Field(_type => Number, { nullable: true, defaultValue: 1 })
   page?: number = 1;
 
-  @Field(type => Number, { nullable: true, defaultValue: 10 })
+  @Field(_type => Number, { nullable: true, defaultValue: 10 })
   pageSize?: number = 10;
 }
 
-@Resolver(of => User)
+@Resolver(_ofType => User)
 export class UserResolver {
-  private users: User[] = [];
+  #users: User[] = [];
 
-  @Query(returns => [User])
-  async users(
-    @Args() { page, pageSize }: PaginationArgs
-  ): Promise<User[]> {
-    const startIndex = (page - 1) * pageSize;
-    return this.users.slice(startIndex, startIndex + pageSize);
+  @Query(_returns => [User])
+  async users(@Args() { page, pageSize }: PaginationArgs): Promise<User[]> {
+    const startIndex = (page ?? 1 - 1) * (pageSize ?? 10);
+    return this.#users.slice(startIndex, startIndex + (pageSize ?? 10));
   }
 
-  @Query(returns => User, { nullable: true })
-  async user(
-    @Arg('id') id: string
-  ): Promise<User | undefined> {
-    return this.users.find(user => user.id === id);
+  @Query(_returns => User, { nullable: true })
+  async user(@Arg('id') id: string): Promise<User | undefined> {
+    return this.#users.find(user => user.id === id);
   }
 
-  @Mutation(returns => User)
-  async createUser(
-    @Arg('input') input: CreateUserInput
-  ): Promise<User> {
-    const existingUser = this.users.find(u => u.email === input.email);
+  @Mutation(_returns => User)
+  async createUser(@Arg('input') input: CreateUserInput): Promise<User> {
+    const existingUser = this.#users.find(u => u.email === input.email);
     if (existingUser) {
       throw new Error('User with this email already exists');
     }
@@ -111,35 +122,30 @@ export class UserResolver {
       role: input.role || UserRole.USER,
       createdAt: new Date(),
     };
-    this.users.push(newUser);
+    this.#users.push(newUser);
     return newUser;
   }
 
-  @Mutation(returns => User)
-  async updateUser(
-    @Arg('id') id: string,
-    @Arg('input') input: CreateUserInput
-  ): Promise<User> {
-    const userIndex = this.users.findIndex(u => u.id === id);
+  @Mutation(_returns => User)
+  async updateUser(@Arg('id') id: string, @Arg('input') input: CreateUserInput): Promise<User> {
+    const userIndex = this.#users.findIndex(u => u.id === id);
     if (userIndex === -1) {
       throw new Error('User not found');
     }
 
-    this.users[userIndex] = {
-      ...this.users[userIndex],
+    this.#users[userIndex] = {
+      ...this.#users[userIndex],
       ...input,
       updatedAt: new Date(),
     };
 
-    return this.users[userIndex];
+    return this.#users[userIndex];
   }
 
-  @Mutation(returns => Boolean)
-  async deleteUser(
-    @Arg('id') id: string
-  ): Promise<boolean> {
-    const initialLength = this.users.length;
-    this.users = this.users.filter(u => u.id !== id);
-    return this.users.length < initialLength;
+  @Mutation(_returns => Boolean)
+  async deleteUser(@Arg('id') id: string): Promise<boolean> {
+    const initialLength = this.#users.length;
+    this.#users = this.#users.filter(u => u.id !== id);
+    return this.#users.length < initialLength;
   }
 }

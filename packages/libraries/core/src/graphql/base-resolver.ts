@@ -1,27 +1,25 @@
-import { Resolver, Query, Mutation, Arg, Field, InputType, ObjectType } from 'type-graphql';
-import { Min, Max, Length } from 'class-validator';
+import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
 export class BaseResponse {
   @Field()
-  success: boolean;
+  success!: boolean;
 
   @Field({ nullable: true })
   message?: string;
+
+  constructor(success = false, message?: string) {
+    this.success = success;
+    this.message = message;
+  }
 }
 
 export abstract class BaseResolver {
   protected createSuccessResponse(message?: string): BaseResponse {
-    return {
-      success: true,
-      message
-    };
+    return new BaseResponse(true, message);
   }
 
   protected createErrorResponse(message: string): BaseResponse {
-    return {
-      success: false,
-      message
-    };
+    return new BaseResponse(false, message);
   }
 }

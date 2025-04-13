@@ -54,9 +54,6 @@
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "1.12.16",
-    "type-graphql": "^2.0.0",
-    "class-validator": "^0.14.0",
-    "reflect-metadata": "^0.2.0",
     "@actions/core": "1.11.1",
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.11",
@@ -79,6 +76,7 @@
     "@theguild/prettier-config": "2.0.7",
     "@types/node": "22.10.5",
     "bob-the-bundler": "7.0.1",
+    "class-validator": "^0.14.1",
     "cypress": "13.17.0",
     "dotenv": "16.4.7",
     "eslint": "8.57.1",
@@ -86,7 +84,7 @@
     "eslint-plugin-hive": "file:rules",
     "eslint-plugin-tailwindcss": "npm:@hasparus/eslint-plugin-tailwindcss@3.17.5",
     "fs-extra": "11.2.0",
-    "graphql": "16.9.0",
+    "graphql": "16.10.0",
     "gray-matter": "4.0.3",
     "jest-snapshot-serializer-raw": "2.0.0",
     "pg": "8.13.1",
@@ -94,11 +92,13 @@
     "prettier-plugin-sql": "0.18.1",
     "prettier-plugin-tailwindcss": "0.6.9",
     "pretty-quick": "4.0.0",
+    "reflect-metadata": "^0.2.2",
     "rimraf": "4.4.1",
     "ts-node": "10.9.2",
     "tsup": "8.4.0",
     "tsx": "4.19.2",
     "turbo": "2.3.3",
+    "type-graphql": "2.0.0-rc.2",
     "typescript": "5.7.3",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.0.5"
@@ -164,5 +164,12 @@
       "ssh2",
       "workerd"
     ]
+  },
+  "dependencies": {
+    "@envelop/core": "5.0.2",
+    "@graphql-hive/gateway": "^1.13.5",
+    "@graphql-tools/schema": "10.0.23",
+    "graphql-tag": "2.12.6",
+    "graphql-yoga": "5.13.3"
   }
 }

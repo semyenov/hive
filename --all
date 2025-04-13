@@ -1,0 +1,13 @@
+/drop
+/add       app/src/graphql/resolvers.ts
+/add       best_practices.md
+/add       deployment/services/clickhouse.ts
+/add       deployment/services/postgres.ts
+/add       deployment/services/s3.ts
+/add       packages/libraries/cli/src/helpers/config.ts
+/add       packages/libraries/cli/src/helpers/errors.ts
+/add       packages/services/api/src/modules/commerce/providers/commerce-client.ts
+/add       packages/services/api/src/modules/operations/providers/sql.ts
+/add       packages/web/app/src/components/admin/AdminStats.tsx
+/add       packages/web/app/src/components/organization/members/list.tsx
+/add       packages/web/app/src/components/target/insights/List.tsx

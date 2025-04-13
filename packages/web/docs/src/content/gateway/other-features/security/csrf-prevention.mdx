@@ -17,7 +17,7 @@ have preflight CORS checks skipped therefore skipping the CORS check.
 This attack can be mitigated by saying: "all GET requests must have a custom header set". This would
 force all clients to manipulate the headers of GET requests, marking them as "\_not-\_simple" and
 therefore always executing a preflight request. Apollo does this when using the
-[`csrfPrevention = true` option](https://www.apollographql.com/docs/apollo-server/api/apollo-server/#csrfprevention).
+[`csrfPrevention = true` option](https://www.apollographql.com/docs/@apollo/server/api/@apollo/server/#csrfprevention).
 
 ## Quick Start
 

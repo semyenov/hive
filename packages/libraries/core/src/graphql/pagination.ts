@@ -1,5 +1,5 @@
+import { Max, Min } from 'class-validator';
 import { Field, InputType, Int, ObjectType } from 'type-graphql';
-import { Min, Max } from 'class-validator';
 
 @InputType()
 export class PaginationInput {
@@ -15,15 +15,22 @@ export class PaginationInput {
 
 @ObjectType()
 export class PaginatedResponse<T> {
-  @Field(() => [T])
-  items: T[];
+  @Field(() => [Object], { defaultValue: [] })
+  items!: T[];
 
-  @Field(() => Int)
-  total: number;
+  @Field(() => Int, { defaultValue: 0 })
+  total!: number;
 
-  @Field(() => Int)
-  page: number;
+  @Field(() => Int, { defaultValue: 1 })
+  page!: number;
 
-  @Field(() => Int)
-  pageSize: number;
+  @Field(() => Int, { defaultValue: 10 })
+  pageSize!: number;
+
+  constructor(items: T[] = [], total = 0, page = 1, pageSize = 10) {
+    this.items = items;
+    this.total = total;
+    this.page = page;
+    this.pageSize = pageSize;
+  }
 }

@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
-import { UserResolver } from './modules/user/user.resolver';
+import { ApolloServer } from '@apollo/server-express';
 import { AuthMiddleware } from '@libraries/core/graphql/auth-middleware';
+import { UserResolver } from './modules/user/user.resolver';
 
 export async function createGraphQLServer() {
   const schema = await buildSchema({
@@ -19,7 +19,7 @@ export async function createGraphQLServer() {
         user: req.user, // Assume user is set by authentication middleware
       };
     },
-    formatError: (error) => {
+    formatError: error => {
       // Custom error formatting
       return {
         message: error.message,

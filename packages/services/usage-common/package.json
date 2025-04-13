@@ -4,5 +4,8 @@
   "private": true,
   "devDependencies": {
     "graphql": "16.9.0"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.12.0"
   }
 }

@@ -137,7 +137,7 @@ or even within Node.js if you are using other ways of implementation like
 
 If you are using Node.js there are a lot of implementations of GraphQL servers with a few being
 [express-graphql](https://github.com/graphql/express-graphql),
-[apollo-server](https://github.com/apollographql/apollo-server),
+[@apollo/server](https://github.com/apollographql/@apollo/server),
 [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server),
 [Hive Gateway](https://the-guild.dev/graphql/hive/docs/gateway),
 [mercurius](https://github.com/mercurius-js/mercurius) and more. And if you are using other
@@ -146,7 +146,7 @@ languages, you can see a great list [here](https://graphql.org/code)
 Now, talking in context with Node.js it all varies depending on your use case.
 
 - Are you dependent on [Apollo](https://apollographql.com) or its ecosystem like
-  [Federation](https://the-guild.dev/graphql/hive/federation)? Go for apollo-server
+  [Federation](https://the-guild.dev/graphql/hive/federation)? Go for @apollo/server
 - Do you use [express](https://github.com/expressjs/express) as your framework? Use express-graphql
 - Are you using fastify or are looking for a performant graphql library with comprehensive support?
   Go for mercurius
@@ -252,8 +252,8 @@ framework, it does come with its own set of problems, most of which have already
 instance, you might have heard about the N+1 problem, lack of caching, Query cost and complexity and
 so on and these have been addressed by some projects like the
 [DataLoader](https://github.com/graphql/dataloader),
-[Persisted Queries](https://apollographql.com/docs/apollo-server/performance/apq),
-[Caching](https://apollographql.com/docs/apollo-server/performance/caching) and more which you can
+[Persisted Queries](https://apollographql.com/docs/@apollo/server/performance/apq),
+[Caching](https://apollographql.com/docs/@apollo/server/performance/caching) and more which you can
 setup depending on your needs.
 
 Ultimately it depends on the degree of the flexibility you want to offer. The more the flexibility,
@@ -544,7 +544,7 @@ have it off unless otherwise needed or probably use it only for specific layers 
 Again, there are a lot of ways to do this.
 
 - If you use the Apollo stack, you can use the apollo-errors package as documented
-  [**here**](https://apollographql.com/docs/apollo-server/data/errors)
+  [**here**](https://apollographql.com/docs/@apollo/server/data/errors)
 - If you use express-graphql or want to use graphql-js natively, they expose error functions as well
   based on
   [**GraphQLError**](https://github.com/graphql/express-graphql#additional-validation-rules) and can

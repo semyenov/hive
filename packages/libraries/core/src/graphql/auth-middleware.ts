@@ -1,15 +1,22 @@
-import { MiddlewareFn } from 'type-graphql';
 import { GraphQLError } from 'graphql';
+import { MiddlewareFn } from 'type-graphql';
 
-export const AuthMiddleware: MiddlewareFn = async ({ context }, next) => {
+interface AuthContext {
+  user?: {
+    id: string;
+    [key: string]: any;
+  };
+}
+
+export const AuthMiddleware: MiddlewareFn<AuthContext> = async ({ context }, next) => {
   // Implement your authentication logic here
-  const user = context.user; // Assume user is set by authentication middleware
+  const user = context.user;
 
   if (!user) {
     throw new GraphQLError('Not authenticated', {
       extensions: {
-        code: 'UNAUTHENTICATED'
-      }
+        code: 'UNAUTHENTICATED',
+      },
     });
   }
 

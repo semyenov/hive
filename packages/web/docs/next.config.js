@@ -1,7 +1,7 @@
 import { withGuildDocs } from '@theguild/components/next.config';
 
 export default withGuildDocs({
-  output: 'export',
+  output: 'standalone',
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -217,8 +217,8 @@ export default withGuildDocs({
       permanent: true,
     },
     {
-      source: '/docs/integrations/apollo-server',
-      destination: '/docs/other-integrations/apollo-server',
+      source: '/docs/integrations/@apollo/server',
+      destination: '/docs/other-integrations/@apollo/server',
       permanent: true,
     },
     {

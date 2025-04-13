@@ -12,7 +12,7 @@ Today we are happy to announce that we are open sourcing a framework we've been 
 couple of months in production — [GraphQL Modules](https://graphql-modules.com)!
 
 Yet another framework? well, kind of GraphQL Modules is a set of extra libraries, structures and
-guidelines around the amazing [Apollo Server 2.0](https://apollographql.com/docs/apollo-server).
+guidelines around the amazing [Apollo Server 2.0](https://apollographql.com/docs/@apollo/server).
 
 You can and should use them as completely separate packages, each one is good for different use
 cases, but all together they represent our current philosophy of building large scale GraphQL
@@ -138,7 +138,7 @@ export const ChatModule = new GraphQLModule({
 ```
 
 ```typescript
-import { ApolloServer } from 'apollo-server'
+import { ApolloServer } from '@apollo/server'
 import { appModule } from './modules/app'
 
 const { schema, context } = appModule

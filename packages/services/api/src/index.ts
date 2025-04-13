@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 export type { RegistryContext } from './context';
 export type { Application as Registry } from 'graphql-modules';
 export { createRegistry } from './create';
@@ -36,3 +38,7 @@ export {
 } from './__generated__/types';
 export { OrganizationMembers } from './modules/organization/providers/organization-members';
 export { OrganizationMemberRoles } from './modules/organization/providers/organization-member-roles';
+
+// New type-graphql exports
+export { User, CreateUserInput } from './modules/graphql/schema';
+export { UserResolver } from './modules/graphql/schema';

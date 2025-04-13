@@ -173,12 +173,6 @@ const createSqlQuery = (parts: readonly string[], values: readonly ValueExpressi
       rawSql += createParamPlaceholder(parameterValues.length + 1, 'Array(String)');
       parameterValues.push(token.values);
     } else if (isLongArrayValue(token)) {
-      // It will basically create a string like this:
-      // arrayConcat({p1: Array(String)}, {p2: Array(String)}, ...)
-      // Use a limit of characters (take the default setting of clickhouse)
-      // check if the next pushed value will exceed the limit
-      // if it does, then push the current value and start a new one
-      // if it doesn't, then append the value to the current value
       const charactersLimit = 10_000;
       const batches: string[][] = [];
       let currentBatch: string[] = [];
@@ -187,9 +181,6 @@ const createSqlQuery = (parts: readonly string[], values: readonly ValueExpressi
       let currentCharacters = 0;
 
       for (const value of token.values) {
-        // we must assume that every added value will be wrapped with double quotes
-        // and that the join will be a comma
-        // so for every value we must add 3 characters, just in case.
         const valueCharacters = value.length + 3;
 
         if (currentCharacters + valueCharacters >= charactersLimit) {
@@ -290,7 +281,6 @@ export function toQueryParams(statement: SqlStatement): Record<string, string> {
   const params: Record<string, string> = {};
 
   for (let i = 0; i < statement.values.length; i++) {
-    // Params are 1-indexed
     params[`param_p${i + 1}`] = stringifyValue(statement.values[i]);
   }
 
@@ -302,7 +292,6 @@ export function printWithValues(statement: SqlStatement): string {
   const values = statement.values;
 
   return sql.replace(/\{p(\d+)[^}]+\}/g, (_, pN) => {
-    // it's 1-indexed
     const index = parseInt(pN, 10) - 1;
     const value = values[index];
 

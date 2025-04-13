@@ -1,7 +1,13 @@
 import { Resolver, Query, Arg } from 'type-graphql';
 import { GraphQLError } from 'graphql';
 
-const users: any[] = [];
+interface User {
+  id: string;
+  displayName: string;
+  email: string;
+}
+
+const users: User[] = [];
 
 @Resolver()
 export class UserResolver {

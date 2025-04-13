@@ -9,16 +9,9 @@ import { renderErrors, RenderErrors_SchemaErrorConnectionFragment } from './sche
 import { Texture } from './texture/texture';
 
 export enum ExitCode {
-  // The command execution succeeded.
   SUCCESS = 0,
-
-  // The command execution failed with a completion code that signals an error.
   ERROR = 1,
-
-  // The CLI was able to handle the command but it took too long and timed out.
   TIMED_OUT = 2,
-
-  // Initialization of the CLI failed. E.g. malformed input
   BAD_INIT = 3,
 }
 
@@ -34,7 +27,6 @@ To disable this message set HIVE_NO_ERROR_TIP=1`;
   }
 }
 
-/** Categorized by command */
 enum ErrorCategory {
   GENERIC = 1_00,
   SCHEMA_CHECK = 2_00,
@@ -223,7 +215,6 @@ export class NetworkError extends HiveCLIError {
   }
 }
 
-/** GraphQL Errors returned from an operation. Note that some GraphQL Errors that require specific steps to correct are handled through other error types. */
 export class APIError extends HiveCLIError {
   public ref?: string;
   constructor(cause: Error | string, requestId?: string) {
@@ -334,7 +325,6 @@ export class RemoteCompositionError extends HiveCLIError {
 }
 
 export class InvalidCompositionResultError extends HiveCLIError {
-  /** Compose API spits out the error message */
   constructor(supergraph?: string | undefined | null) {
     super(
       ExitCode.ERROR,

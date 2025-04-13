@@ -102,7 +102,6 @@ export class Config {
   }
 
   private readSpace(content: Record<string, any>) {
-    // eslint-disable-next-line no-process-env
     const space = process.env.HIVE_SPACE;
 
     if (space) {
@@ -135,7 +134,6 @@ export class Config {
           };
         }
         const config = ConfigModel.safeParse(space);
-        // TODO: we should probably print a warning/error in case of an invalid config.
         if (config.success) {
           this.cache = config.data;
         } else {

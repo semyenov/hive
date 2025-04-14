@@ -1,13 +1,16 @@
-import { Kind } from 'graphql';
-import { __isTypeOf, usage } from '../utils';
-import type { GraphQlInputObjectTypeResolvers } from './../../../__generated__/types';
+import { Kind } from "graphql";
+import { __isTypeOf, usage } from "../utils";
+import type {
+  GraphQLInputObjectTypeResolvers,
+  GraphQlInputObjectTypeResolvers,
+} from "./../../../__generated__/types";
 
-export const GraphQLInputObjectType: GraphQlInputObjectTypeResolvers = {
+export const GraphQLInputObjectType: GraphQLInputObjectTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.INPUT_OBJECT_TYPE_DEFINITION),
-  name: t => t.entity.name,
-  description: t => t.entity.description ?? null,
-  fields: t =>
-    t.entity.fields.map(f => ({
+  name: (t) => t.entity.name,
+  description: (t) => t.entity.description ?? null,
+  fields: (t) =>
+    t.entity.fields.map((f) => ({
       entity: f,
       parent: {
         coordinate: t.entity.name,
@@ -15,12 +18,14 @@ export const GraphQLInputObjectType: GraphQlInputObjectTypeResolvers = {
       usage: t.usage,
       supergraph: t.supergraph
         ? {
-            ownedByServiceNames: t.supergraph.getInputFieldOwnedByServices(f.name),
+            ownedByServiceNames: t.supergraph.getInputFieldOwnedByServices(
+              f.name,
+            ),
           }
         : null,
     })),
   usage,
-  supergraphMetadata: t =>
+  supergraphMetadata: (t) =>
     t.supergraph
       ? {
           ownedByServiceNames: t.supergraph.ownedByServiceNames,

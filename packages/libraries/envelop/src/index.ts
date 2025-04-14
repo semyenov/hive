@@ -7,9 +7,9 @@ import {
   HivePluginOptions,
   isAsyncIterable,
   isHiveClient,
-} from '@graphql-hive/core';
+} from '@lib/core';
 
-export { atLeastOnceSampler, createSchemaFetcher, createServicesFetcher } from '@graphql-hive/core';
+export { atLeastOnceSampler, createSchemaFetcher, createServicesFetcher } from '@lib/core';
 
 export function createHive(clientOrOptions: HivePluginOptions) {
   return createHiveClient({

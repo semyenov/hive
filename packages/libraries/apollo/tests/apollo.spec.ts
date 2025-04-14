@@ -11,8 +11,8 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { http } from '@graphql-hive/core';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { http } from '@lib/core';
 import { createHive, useHive } from '../src';
 
 function createLogger() {

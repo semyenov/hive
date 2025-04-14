@@ -8,12 +8,12 @@ other GraphQL APIs.
 
 [Documentation](https://the-guild.dev/graphql/hive/docs/other-integrations/graphql-yoga)
 
-## Migration from `@graphql-hive/client`
+## Migration from `@lib/client`
 
-The `@graphql-hive/client` package has been deprecated in favor of library-specific packages.
+The `@lib/client` package has been deprecated in favor of library-specific packages.
 
-1. Install the `@graphql-hive/yoga` package.
-1. Remove the `@graphql-hive/client` package from your dependencies.
-1. Replace `@graphql-hive/client` with `@graphql-hive/yoga` in your codebase.
+1. Install the `@lib/yoga` package.
+1. Remove the `@lib/client` package from your dependencies.
+1. Replace `@lib/client` with `@lib/yoga` in your codebase.
 1. Replace `useYogaHive` with `useHive`, and `createYogaHive` with `createHive` in your codebase.
 1. Done

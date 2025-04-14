@@ -44,28 +44,31 @@
       "@hive/schema": ["./packages/services/schema/src/api.ts"],
       "@hive/schema/*": ["./packages/services/schema/src/*"],
       "@hive/usage-common": ["./packages/services/usage-common/src/index.ts"],
+      "@hive/usage-common/*": ["./packages/services/usage-common/src/*"],
       "@hive/usage": ["./packages/services/usage/src/index.ts"],
-      "@hive/usage-ingestor": ["./packages/services/usage-ingestor/src/index.ts"],
+      "@hive/usage/*": ["./packages/services/usage/src/*"],
       "@hive/policy": ["./packages/services/policy/src/api.ts"],
+      "@hive/policy/*": ["./packages/services/policy/src/*"],
       "@hive/tokens": ["./packages/services/tokens/src/api.ts"],
       "@hive/webhooks": ["./packages/services/webhooks/src/api.ts"],
+      "@hive/webhooks/*": ["./packages/services/webhooks/src/*"],
       "@hive/emails": ["./packages/services/emails/src/api.ts"],
+      "@hive/emails/*": ["./packages/services/emails/src/*"],
       "@hive/commerce": ["./packages/services/commerce/src/api.ts"],
+      "@hive/commerce/*": ["./packages/services/commerce/src/*"],
       "@hive/storage": ["./packages/services/storage/src/index.ts"],
       "@hive/storage/*": ["./packages/services/storage/src/*"],
-      "@graphql-hive/yoga": ["./packages/libraries/yoga/src/index.ts"],
-      "@graphql-hive/apollo": ["./packages/libraries/apollo/src/index.ts"],
-      "@graphql-hive/envelop": ["./packages/libraries/envelop/src/index.ts"],
-      "@graphql-hive/external-composition": [
-        "./packages/libraries/external-composition/src/index.ts"
-      ],
-      "@graphql-hive/core": ["./packages/libraries/core/src/index.ts"],
-      "@graphql-hive/core/src/client/collect-schema-coordinates": [
-        "./packages/libraries/core/src/client/collect-schema-coordinates.ts"
-      ],
-      "@hive/usage-ingestor/src/normalize-operation": [
-        "./packages/services/usage-ingestor/src/normalize-operation.ts"
-      ],
+      "@lib/yoga": ["./packages/libraries/yoga/src/index.ts"],
+      "@lib/yoga/*": ["./packages/libraries/yoga/src/*"],
+      "@lib/apollo": ["./packages/libraries/apollo/src/index.ts"],
+      "@lib/apollo/*": ["./packages/libraries/apollo/src/*"],
+      "@lib/envelop": ["./packages/libraries/envelop/src/index.ts"],
+      "@lib/external-composition": ["./packages/libraries/external-composition/src/index.ts"],
+      "@lib/external-composition/*": ["./packages/libraries/external-composition/src/*"],
+      "@lib/core": ["./packages/libraries/core/src/index.ts"],
+      "@lib/core/*": ["./packages/libraries/core/src/*"],
+      "@hive/usage-ingestor": ["./packages/services/usage-ingestor/src/index.ts"],
+      "@hive/usage-ingestor/*": ["./packages/services/usage-ingestor/src/*"],
       "@/*": ["./packages/web/app/src/*"],
       "testkit/*": ["./integration-tests/testkit/*"]
     }

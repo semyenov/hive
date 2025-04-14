@@ -1,14 +1,12 @@
 // It was ported from `bob runify --single` command.
 // The idea here is to compile a node service to a single file (not in case of next) and make it executable.
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
-import fs from 'fs-extra';
 import { build as tsup } from 'tsup';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
-
-const requireShim = fs.readFileSync(normalize(join(__dirname, './banner.js')), 'utf-8');
 
 const entryPoints = parseArgs({
   allowPositionals: true,
@@ -41,7 +39,7 @@ async function runify(packagePath: string) {
 
 export async function readPackageJson(baseDir: string) {
   return JSON.parse(
-    await fs.readFile(resolve(baseDir, 'package.json'), {
+    readFileSync(resolve(baseDir, 'package.json'), {
       encoding: 'utf-8',
     }),
   );
@@ -53,10 +51,7 @@ async function rewritePackageJson(
   modify?: (pkg: any) => any,
 ) {
   let filename = 'index.js';
-
-  let newPkg: Record<string, any> = {
-    bin: filename,
-  };
+  let newPkg: Record<string, any> = { bin: filename };
   const fields = ['name', 'version', 'description', 'registry', 'repository', 'type'];
 
   fields.forEach(field => {
@@ -69,7 +64,7 @@ async function rewritePackageJson(
     newPkg = modify(newPkg);
   }
 
-  await fs.writeFile(join(cwd, 'dist', 'package.json'), JSON.stringify(newPkg, null, 2), {
+  writeFileSync(join(cwd, 'dist', 'package.json'), JSON.stringify(newPkg, null, 2), {
     encoding: 'utf-8',
   });
 }
@@ -81,24 +76,25 @@ async function compile(
   dependencies: string[],
   useEsm = false,
 ) {
-  const out = normalize(join(cwd, 'dist'));
+  const outDir = normalize(join(cwd, 'dist'));
+  const requireShim = readFileSync(normalize(join(__dirname, './banner.js')), {
+    encoding: 'utf-8',
+  });
 
   await tsup({
     entryPoints: (Array.isArray(entryPoint) ? entryPoint : [entryPoint]).map(entryPoint =>
       normalize(join(cwd, entryPoint)),
     ),
-    outDir: out,
+    outDir,
     target: 'node22',
     format: [useEsm ? 'esm' : 'cjs'],
     splitting: false,
-    sourcemap: true,
+    sourcemap: 'inline',
     clean: true,
     shims: true,
     skipNodeModulesBundle: false,
-    // noExternal: dependencies,
+    noExternal: dependencies,
     external: buildOptions.external,
-    banner: {
-      js: requireShim,
-    },
+    banner: { js: requireShim },
   });
 }

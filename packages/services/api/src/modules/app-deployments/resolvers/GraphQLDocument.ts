@@ -1,4 +1,7 @@
-import type { GraphQlDocumentResolvers } from './../../../__generated__/types';
+import type {
+  GraphQLDocumentResolvers,
+  GraphQlDocumentResolvers,
+} from "./../../../__generated__/types";
 
 /*
  * Note: This object type is generated because "GraphQLDocumentMapper" is declared. This is to ensure runtime safety.
@@ -9,9 +12,9 @@ import type { GraphQlDocumentResolvers } from './../../../__generated__/types';
  *
  * If you want to skip this file generation, remove the mapper or update the pattern in the `resolverGeneration.object` config.
  */
-export const GraphQLDocument: GraphQlDocumentResolvers = {
+export const GraphQLDocument: GraphQLDocumentResolvers = {
   /* Implement GraphQLDocument resolver logic here */
-  insightsHash: document => {
+  insightsHash: (document) => {
     return document.internalHash;
   },
 };

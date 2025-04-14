@@ -1,7 +1,6 @@
-import { randomUUID } from 'crypto';
-import { UserInputError } from 'apollo-server-express';
+import { GraphQLError } from 'graphql';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { BaseResolver } from '@libraries/core/graphql/base-resolver';
+import { BaseResolver } from '@lib/core';
 import { CreateUserInput, UpdateUserInput, User } from './user.model';
 
 @Resolver()
@@ -18,13 +17,14 @@ export class UserResolver extends BaseResolver {
     // Check for duplicate email
     const existingUser = this.#users.find(user => user.email === input.email);
     if (existingUser) {
-      throw new UserInputError('Email already exists');
+      throw new GraphQLError('Email already exists', {
+        extensions: { code: 'BAD_USER_INPUT' },
+      });
     }
 
-    const newUser: User = {
-      id: randomUUID(),
+    const newUser = new User({
       ...input,
-    };
+    });
     this.#users.push(newUser);
     return newUser;
   }
@@ -33,7 +33,9 @@ export class UserResolver extends BaseResolver {
   async updateUser(@Arg('input') input: UpdateUserInput): Promise<User> {
     const userIndex = this.#users.findIndex(user => user.id === input.id);
     if (userIndex === -1) {
-      throw new UserInputError('User not found');
+      throw new GraphQLError('User not found', {
+        extensions: { code: 'BAD_USER_INPUT' },
+      });
     }
 
     // If email is being updated, check for duplicates
@@ -42,7 +44,9 @@ export class UserResolver extends BaseResolver {
         user => user.email === input.email && user.id !== input.id,
       );
       if (existingUser) {
-        throw new UserInputError('Email already exists');
+        throw new GraphQLError('Email already exists', {
+          extensions: { code: 'BAD_USER_INPUT' },
+        });
       }
     }
 

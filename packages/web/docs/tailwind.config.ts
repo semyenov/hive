@@ -11,11 +11,15 @@ import baseConfig from '@theguild/tailwind-config';
 
 const config: Config = {
   ...baseConfig,
-  content: [...baseConfig.content, './mdx-components.js'],
+  content: [
+    ...baseConfig.content,
+    './mdx-components.js',
+    './src/content/**/*.mdx',
+    './src/content/**/*.md',
+  ],
   theme: {
     ...baseConfig.theme,
     extend: {
-      ...baseConfig.theme.extend,
       fontFamily: {
         sans: ['var(--font-sans, ui-sans-serif)', ...fontFamily.sans],
       },

@@ -30,7 +30,7 @@ const config: CodegenConfig = {
         },
         typesPluginsConfig: {
           immutableTypes: true,
-          namingConvention: 'change-case-all#pascalCase', // TODO: This is triggering a warning about type name not working 100% of the time. eddeee888 to fix in Server Preset by using `meta` field.
+          // namingConvention: 'change-case-all#pascalCase', // TODO: This is triggering a warning about type name not working 100% of the time. eddeee888 to fix in Server Preset by using `meta` field.
           contextType: 'GraphQLModules.ModuleContext',
           enumValues: {
             ProjectType: '../shared/entities#ProjectType',

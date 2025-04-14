@@ -2,16 +2,16 @@ import 'reflect-metadata';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import { GraphQLError } from 'graphql';
 import { buildSchema } from 'type-graphql';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import { useHive } from '@graphql-hive/apollo';
+import { createHive, useHive } from '@lib/apollo';
 import { UserResolver } from './graphql/resolvers';
 
 // Load environment variables
 const PORT = parseInt(process.env.PORT || '4000', 10);
 const HOST = process.env.HOST || 'localhost';
-const GRAPHQL_INTROSPECTION = process.env.GRAPHQL_INTROSPECTION !== 'false';
 
 async function bootstrap() {
   // Build TypeGraphQL schema
@@ -21,19 +21,36 @@ async function bootstrap() {
     validate: true,
   });
 
+  // Create Hive client with proper configuration
+  const hiveClient = createHive({
+    enabled: true,
+    debug: true, // Enable debug logs
+    token: process.env.HIVE_TOKEN || 'YOUR-TOKEN',
+    reporting: {
+      author: 'app-server',
+      commit: 'local-dev',
+    },
+    usage: {
+      clientInfo: req => {
+        const clientName = req.headers['x-graphql-client-name'];
+        const clientVersion = req.headers['x-graphql-client-version'];
+
+        if (typeof clientName === 'string' && typeof clientVersion === 'string') {
+          return {
+            name: clientName,
+            version: clientVersion,
+          };
+        }
+
+        return null;
+      },
+    },
+  });
+
   // Create Apollo Server with the TypeGraphQL schema
   const server = new ApolloServer({
     schema,
-    introspection: GRAPHQL_INTROSPECTION,
-    plugins: [
-      useHive({
-        enabled: true,
-        token: process.env.HIVE_TOKEN || 'YOUR-TOKEN',
-        usage: {
-          target: process.env.HIVE_TARGET || '<YOUR_ORGANIZATION>/<YOUR_PROJECT>/<YOUR_TARGET>',
-        },
-      }),
-    ],
+    plugins: [useHive(hiveClient)],
   });
 
   // Start the server
@@ -55,7 +72,6 @@ async function bootstrap() {
   // Start Express server
   app.listen({ port: PORT, host: HOST }, () => {
     console.log(`🚀 Server ready at http://${HOST}:${PORT}/graphql`);
-    console.log(`GraphQL Introspection: ${GRAPHQL_INTROSPECTION ? 'Enabled' : 'Disabled'}`);
   });
 }
 

@@ -1,52 +1,46 @@
 import 'reflect-metadata';
-import { createYoga } from 'graphql-yoga';
-import { Arg, buildSchema, Field, ID, ObjectType, Query, Resolver } from 'type-graphql';
-import { envelop } from '@envelop/core';
+import { gql } from 'graphql-tag';
+import { createSchema, createYoga } from 'graphql-yoga';
 
-@ObjectType()
-class User {
-  @Field(() => ID)
-  id!: string;
+// Define users data
+const users = [
+  { id: '1', name: 'John Doe', email: 'john@example.com' },
+  { id: '2', name: 'Jane Smith', email: 'jane@example.com' },
+];
 
-  @Field()
-  name!: string;
-
-  @Field()
-  email!: string;
-}
-
-@Resolver()
-class UserResolver {
-  private users = [
-    { id: '1', name: 'John Doe', email: 'john@example.com' },
-    { id: '2', name: 'Jane Smith', email: 'jane@example.com' },
-  ];
-
-  @Query(() => [User])
-  async users(): Promise<User[]> {
-    return this.users;
+// Define the schema using explicit types to match graphql-yoga v5.0.0
+const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
   }
 
-  @Query(() => User, { nullable: true })
-  async user(@Arg('id') id: string): Promise<User | undefined> {
-    return this.users.find(user => user.id === id);
+  type Query {
+    users: [User!]!
+    user(id: ID!): User
   }
-}
+`;
+
+// Type-safe resolvers
+const resolvers = {
+  Query: {
+    users: () => users,
+    user: (_: unknown, { id }: { id: string }) => users.find(user => user.id === id),
+  },
+};
 
 export async function createRequestListener(_env: any) {
-  // Build TypeGraphQL schema
-  const schema = await buildSchema({
-    resolvers: [UserResolver],
-    validate: true,
+  // Create schema using GraphQL SDL
+  const schema = createSchema({
+    typeDefs,
+    resolvers,
   });
 
   // Create yoga instance with the schema
   return createYoga({
     schema,
-    plugins: [
-      envelop({
-        plugins: [],
-      }),
-    ],
   });
 }
+
+export const yoga = createRequestListener({});

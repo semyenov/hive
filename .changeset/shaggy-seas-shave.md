@@ -1,5 +1,5 @@
 ---
-'@graphql-hive/cli': minor
+'@lib/cli': minor
 'hive': minor
 ---
 

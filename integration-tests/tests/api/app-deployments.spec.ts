@@ -3,7 +3,7 @@ import { createLogger } from 'graphql-yoga';
 import { waitFor } from 'testkit/flow';
 import { initSeed } from 'testkit/seed';
 import { getServiceHost } from 'testkit/utils';
-import { createHive } from '@graphql-hive/core';
+import { createHive } from '@lib/core';
 import { graphql } from '../../testkit/gql';
 import { execute } from '../../testkit/graphql';
 

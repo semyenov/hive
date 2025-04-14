@@ -85,11 +85,11 @@ The following example shows how to implement an External Composition endpoint fo
 v2 in NodeJS.
 
 ```sh npm2yarn
-npm i -D @graphql-hive/external-composition
+npm i -D @lib/external-composition
 ```
 
 <Callout type="info">
-  The `@graphql-hive/external-composition` library provides a thin `compose` function to bring
+  The `@lib/external-composition` library provides a thin `compose` function to bring
   auto-completion and type-safety to your IDE.
 </Callout>
 
@@ -97,7 +97,7 @@ npm i -D @graphql-hive/external-composition
 import fastify from 'fastify'
 import { parse, printSchema } from 'graphql'
 import { composeServices } from '@apollo/composition'
-import { compose, signatureHeaderName, verifyRequest } from '@graphql-hive/external-composition'
+import { compose, signatureHeaderName, verifyRequest } from '@lib/external-composition'
 
 const composeFederation = compose(services => {
   const result = composeServices(

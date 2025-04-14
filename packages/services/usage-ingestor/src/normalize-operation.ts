@@ -6,7 +6,7 @@ import {
   type DocumentNode,
   type OperationDefinitionNode,
 } from 'graphql';
-import { normalizeOperation as coreNormalizeOperation } from '@graphql-hive/core';
+import { normalizeOperation as coreNormalizeOperation } from '@lib/core';
 
 /** normalize a graphql operation into a stable hash as used internally within our ClickHouse Database. */
 export function normalizeOperation(operation: {

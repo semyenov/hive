@@ -1,5 +1,6 @@
+import 'reflect-metadata';
 import { buildSchema, parse } from 'graphql';
-import { createHive } from '@graphql-hive/core';
+import { createHive } from '@lib/core';
 
 const isFederation = process.env.FEDERATION === '1';
 const isSchemaReportingEnabled = process.env.SCHEMA_REPORTING !== '0';
@@ -69,7 +70,6 @@ const createInstance = (
 
 async function single() {
   const hiveInstance = createInstance(null);
-
   await hiveInstance.info();
 
   const schema = buildSchema(/* GraphQL */ `

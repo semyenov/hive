@@ -1,12 +1,23 @@
-import { buildSchema, DocumentNode, GraphQLError, Kind, parse, TypeInfo, validate } from 'graphql';
-import PromiseQueue from 'p-queue';
-import { z } from 'zod';
-import { collectSchemaCoordinates } from '@graphql-hive/core/src/client/collect-schema-coordinates';
-import { buildOperationS3BucketKey } from '@hive/cdn-script/artifact-storage-reader';
-import { ServiceLogger } from '@hive/service-common';
-import { normalizeOperation } from '@hive/usage-ingestor/src/normalize-operation';
-import { sql as c_sql, ClickHouse } from '../../operations/providers/clickhouse-client';
-import { S3Config } from '../../shared/providers/s3-config';
+import { buildOperationS3BucketKey } from "@hive/cdn-script/artifact-storage-reader";
+import { ServiceLogger } from "@hive/service-common";
+import { normalizeOperation } from "@hive/usage-ingestor/src/normalize-operation";
+import { collectSchemaCoordinates } from "@lib/core";
+import {
+  buildSchema,
+  DocumentNode,
+  GraphQLError,
+  Kind,
+  parse,
+  TypeInfo,
+  validate,
+} from "graphql";
+import PromiseQueue from "p-queue";
+import { z } from "zod";
+import {
+  sql as c_sql,
+  ClickHouse,
+} from "../../operations/providers/clickhouse-client";
+import { S3Config } from "../../shared/providers/s3-config";
 
 type DocumentRecord = {
   appDeploymentId: string;
@@ -22,17 +33,19 @@ type DocumentRecord = {
 const AppDeploymentOperationHashModel = z
   .string()
   .trim()
-  .min(1, 'Hash must be at least 1 characters long')
-  .max(128, 'Hash must be at most 128 characters long')
+  .min(1, "Hash must be at least 1 characters long")
+  .max(128, "Hash must be at most 128 characters long")
   .regex(
     /^([A-Za-z]|[0-9]|_|-)+$/,
     "Operation hash can only contain letters, numbers, '_', and '-'",
   );
 
-const AppDeploymentOperationBodyModel = z.string().min(3, 'Body must be at least 3 character long');
+const AppDeploymentOperationBodyModel = z
+  .string()
+  .min(3, "Body must be at least 3 character long");
 
 export type BatchProcessEvent = {
-  event: 'PROCESS';
+  event: "PROCESS";
   id: string;
   data: {
     schemaSdl: string;
@@ -47,11 +60,11 @@ export type BatchProcessEvent = {
 };
 
 export type BatchProcessedEvent = {
-  event: 'processedBatch';
+  event: "processedBatch";
   id: string;
   data:
     | {
-        type: 'error';
+        type: "error";
         error: {
           message: string;
           details: {
@@ -63,7 +76,7 @@ export type BatchProcessedEvent = {
         };
       }
     | {
-        type: 'success';
+        type: "success";
       };
 };
 
@@ -76,12 +89,12 @@ export class PersistedDocumentIngester {
     private s3: S3Config,
     logger: ServiceLogger,
   ) {
-    this.logger = logger.child({ source: 'PersistedDocumentIngester' });
+    this.logger = logger.child({ source: "PersistedDocumentIngester" });
   }
 
-  async processBatch(data: BatchProcessEvent['data']) {
+  async processBatch(data: BatchProcessEvent["data"]) {
     this.logger.debug(
-      'Processing batch. (targetId=%s, appDeploymentId=%s, operationCount=%n)',
+      "Processing batch. (targetId=%s, appDeploymentId=%s, operationCount=%n)",
       data.targetId,
       data.appDeployment.id,
       data.documents.length,
@@ -93,28 +106,35 @@ export class PersistedDocumentIngester {
 
     let index = 0;
     for (const operation of data.documents) {
-      const hashValidation = AppDeploymentOperationHashModel.safeParse(operation.hash);
-      const bodyValidation = AppDeploymentOperationBodyModel.safeParse(operation.body);
+      const hashValidation = AppDeploymentOperationHashModel.safeParse(
+        operation.hash,
+      );
+      const bodyValidation = AppDeploymentOperationBodyModel.safeParse(
+        operation.body,
+      );
 
-      if (hashValidation.success === false || bodyValidation.success === false) {
+      if (
+        hashValidation.success === false ||
+        bodyValidation.success === false
+      ) {
         this.logger.debug(
-          'Invalid operation provided. Processing failed. (targetId=%s, appDeploymentId=%s, operationIndex=%n)',
+          "Invalid operation provided. Processing failed. (targetId=%s, appDeploymentId=%s, operationIndex=%n)",
           data.targetId,
           data.appDeployment.id,
           index,
         );
 
         return {
-          type: 'error' as const,
+          type: "error" as const,
           error: {
             // TODO: we should add more details (what hash is affected etc.)
-            message: 'Invalid input, please check the operations.',
+            message: "Invalid input, please check the operations.",
             details: {
               index,
               message:
                 hashValidation.error?.issues[0].message ??
                 bodyValidation.error?.issues[0].message ??
-                'Invalid hash or body provided',
+                "Invalid hash or body provided",
             },
           },
         };
@@ -126,16 +146,16 @@ export class PersistedDocumentIngester {
         if (err instanceof GraphQLError) {
           console.error(err);
           this.logger.debug(
-            'Failed parsing GraphQL operation. (targetId=%s, appDeploymentId=%s, operationIndex=%n)',
+            "Failed parsing GraphQL operation. (targetId=%s, appDeploymentId=%s, operationIndex=%n)",
             data.targetId,
             data.appDeployment.id,
             index,
           );
 
           return {
-            type: 'error' as const,
+            type: "error" as const,
             error: {
-              message: 'Failed to parse a GraphQL operation.',
+              message: "Failed to parse a GraphQL operation.",
               details: {
                 index,
                 message: err.message,
@@ -151,16 +171,17 @@ export class PersistedDocumentIngester {
 
       if (errors.length > 0) {
         this.logger.debug(
-          'GraphQL operation did not pass validation against latest valid schema version. (targetId=%s, appDeploymentId=%s, operationIndex=%n)',
+          "GraphQL operation did not pass validation against latest valid schema version. (targetId=%s, appDeploymentId=%s, operationIndex=%n)",
           data.targetId,
           data.appDeployment.id,
           index,
         );
 
         return {
-          type: 'error' as const,
+          type: "error" as const,
           error: {
-            message: 'The GraphQL operation is not valid against the latest schema version.',
+            message:
+              "The GraphQL operation is not valid against the latest schema version.",
             details: {
               index,
               message: errors[0].message,
@@ -172,13 +193,14 @@ export class PersistedDocumentIngester {
       const operationNames = getOperationNames(documentNode);
       if (operationNames.length > 1) {
         return {
-          type: 'error' as const,
+          type: "error" as const,
           error: {
-            message: 'Only one executable operation definition is allowed per document.',
+            message:
+              "Only one executable operation definition is allowed per document.",
             details: {
               index,
               message:
-                'Multiple operation definitions found. Only one executable operation definition is allowed per document.',
+                "Multiple operation definitions found. Only one executable operation definition is allowed per document.",
             },
           },
         };
@@ -214,7 +236,7 @@ export class PersistedDocumentIngester {
 
     if (documents.length) {
       this.logger.debug(
-        'inserting documents into clickhouse and s3. (targetId=%s, appDeployment=%s, documentCount=%n)',
+        "inserting documents into clickhouse and s3. (targetId=%s, appDeployment=%s, documentCount=%n)",
         data.targetId,
         data.appDeployment.id,
         documents.length,
@@ -228,7 +250,7 @@ export class PersistedDocumentIngester {
     }
 
     return {
-      type: 'success' as const,
+      type: "success" as const,
     };
   }
 
@@ -241,7 +263,7 @@ export class PersistedDocumentIngester {
   }) {
     // 1. Insert into ClickHouse
     this.logger.debug(
-      'Inserting documents into ClickHouse. (targetId=%s, appDeployment=%s, documentCount=%n)',
+      "Inserting documents into ClickHouse. (targetId=%s, appDeployment=%s, documentCount=%n)",
       args.targetId,
       args.appDeployment.id,
       args.documents.length,
@@ -258,20 +280,20 @@ export class PersistedDocumentIngester {
           , "hash"
         )
         FORMAT CSV`,
-      data: args.documents.map(document => [
+      data: args.documents.map((document) => [
         document.appDeploymentId,
         document.hash,
         document.body,
-        document.operationName ?? '',
+        document.operationName ?? "",
         document.schemaCoordinates,
         document.internalHash,
       ]),
       timeout: 10_000,
-      queryId: 'insert_app_deployment_documents',
+      queryId: "insert_app_deployment_documents",
     });
 
     this.logger.debug(
-      'Inserting documents into ClickHouse finished. (targetId=%s, appDeployment=%s, documentCount=%n)',
+      "Inserting documents into ClickHouse finished. (targetId=%s, appDeployment=%s, documentCount=%n)",
       args.targetId,
       args.appDeployment.id,
       args.documents.length,
@@ -288,7 +310,7 @@ export class PersistedDocumentIngester {
     documents: Array<DocumentRecord>;
   }) {
     this.logger.debug(
-      'Inserting documents into S3. (targetId=%s, appDeployment=%s, documentCount=%n)',
+      "Inserting documents into S3. (targetId=%s, appDeployment=%s, documentCount=%n)",
       args.targetId,
       args.appDeployment.id,
       args.documents.length,
@@ -308,17 +330,20 @@ export class PersistedDocumentIngester {
       tasks.push(
         this.promiseQueue.add(async () => {
           for (const s3 of this.s3) {
-            const response = await s3.client.fetch([s3.endpoint, s3.bucket, s3Key].join('/'), {
-              method: 'PUT',
-              headers: {
-                'content-type': 'text/plain',
+            const response = await s3.client.fetch(
+              [s3.endpoint, s3.bucket, s3Key].join("/"),
+              {
+                method: "PUT",
+                headers: {
+                  "content-type": "text/plain",
+                },
+                body: document.body,
+                aws: {
+                  // This boolean makes Google Cloud Storage & AWS happy.
+                  signQuery: true,
+                },
               },
-              body: document.body,
-              aws: {
-                // This boolean makes Google Cloud Storage & AWS happy.
-                signQuery: true,
-              },
-            });
+            );
 
             if (response.statusCode !== 200) {
               throw new Error(
@@ -333,7 +358,7 @@ export class PersistedDocumentIngester {
     await Promise.all(tasks);
 
     this.logger.debug(
-      'Inserting documents into S3 finished. (targetId=%s, appDeployment=%s, documentCount=%n)',
+      "Inserting documents into S3 finished. (targetId=%s, appDeployment=%s, documentCount=%n)",
       args.targetId,
       args.appDeployment.id,
       args.documents.length,

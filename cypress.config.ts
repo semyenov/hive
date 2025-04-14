@@ -12,11 +12,10 @@ if (process.env.RUN_AGAINST_LOCAL_SERVICES === '1') {
   const dotenv = await import('dotenv');
   dotenv.config({ path: import.meta.dirname + '/packages/services/server/.env.template' });
   // It seems that this has to be set in the environment that the cypress cli is executed from.
-  // process.env.CYPRESS_BASE_URL = process.env.CYPRESS_BASE_URL ?? 'http://localhost:3000';
+  process.env.CYPRESS_BASE_URL = process.env.CYPRESS_BASE_URL ?? 'http://localhost:3000';
 }
 
 const isCI = Boolean(process.env.CI);
-
 export const seed = initSeed();
 
 export default defineConfig({

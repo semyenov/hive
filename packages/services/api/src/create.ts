@@ -294,7 +294,11 @@ export function createRegistry({
       scope: Scope.Singleton,
       useValue: storage.pool,
     },
-    { provide: PUB_SUB_CONFIG, scope: Scope.Singleton, useValue: pubSub },
+    {
+      provide: PUB_SUB_CONFIG,
+      scope: Scope.Singleton,
+      useValue: pubSub,
+    },
     encryptionSecretProvider(encryptionSecret),
     provideSchemaModuleConfig(schemaConfig),
     provideCommerceConfig(commerce),

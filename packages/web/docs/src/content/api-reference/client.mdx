@@ -13,14 +13,14 @@ import { Tabs } from '@theguild/components'
 
 Here's a list of official libraries for JavaScript and NodeJS:
 
-- `@graphql-hive/yoga` ([npm](https://npmjs.com/package/@graphql-hive/yoga),
+- `@lib/yoga` ([npm](https://npmjs.com/package/@lib/yoga),
   [guide](/docs/other-integrations/graphql-yoga)) - Integration with GraphQL Yoga.
-- `@graphql-hive/apollo` ([npm](https://npmjs.com/package/@graphql-hive/apollo),
-  [guide](/docs/other-integrations/@apollo/server)) - Integration with Apollo Server.
-- `@graphql-hive/envelop` ([npm](https://npmjs.com/package/@graphql-hive/envelop),
+- `@lib/apollo` ([npm](https://npmjs.com/package/@lib/apollo),
+  [guide](/docs/other-integrations/apollo-server)) - Integration with Apollo Server.
+- `@lib/envelop` ([npm](https://npmjs.com/package/@lib/envelop),
   [guide](/docs/other-integrations/envelop)) - Integration with Envelop.
-- `@graphql-hive/core` ([npm](https://npmjs.com/package/@graphql-hive/core)) - core library for
-  interacting with Hive's **Schema Registry** and **Usage Reporting**.
+- `@lib/core` ([npm](https://npmjs.com/package/@lib/core)) - core library for interacting with
+  Hive's **Schema Registry** and **Usage Reporting**.
 
 You can refer to the following guides for getting started within your project, then revisit this
 page for configuring the client to your needs.
@@ -34,7 +34,7 @@ page for configuring the client to your needs.
     title="Schema-Stitching Gateway"
     href="/docs/other-integrations/schema-stitching"
   />
-  <Cards.Card arrow title="Apollo-Server" href="/docs/other-integrations/@apollo/server" />
+  <Cards.Card arrow title="Apollo-Server" href="/docs/other-integrations/apollo-server" />
   <Cards.Card arrow title="Apollo Gateway" href="/docs/other-integrations/apollo-gateway" />
 </Cards>
 
@@ -166,7 +166,7 @@ The `samplingContext` object contains the following properties:
 <Tabs.Tab>
 
 ```typescript
-import { createHive, atLeastOnceSampler} from '@graphql-hive/core';
+import { createHive, atLeastOnceSampler} from '@lib/core';
 
 const hive = createHive({
   /* ... other options ... */,
@@ -204,7 +204,7 @@ const hive = createHive({
 <Tabs.Tab>
 
 ```typescript
-import { useHive, atLeastOnceSampler} from '@graphql-hive/yoga';
+import { useHive, atLeastOnceSampler} from '@lib/yoga';
 
 useHive({
   /* ... other options ... */,
@@ -242,7 +242,7 @@ useHive({
 <Tabs.Tab>
 
 ```typescript
-import { useHive, atLeastOnceSampler} from '@graphql-hive/apollo';
+import { useHive, atLeastOnceSampler} from '@lib/apollo';
 
 useHive({
   /* ... other options ... */,
@@ -280,7 +280,7 @@ useHive({
 <Tabs.Tab>
 
 ```typescript
-import { useHive, atLeastOnceSampler} from '@graphql-hive/envelop';
+import { useHive, atLeastOnceSampler} from '@lib/envelop';
 
 useHive({
   /* ... other options ... */,
@@ -399,7 +399,7 @@ If your GraphQL server is not listed above, you can implement a custom integrati
 importing and creating a Hive instance using the `createHive` function.
 
 ```ts
-import { createHive } from '@graphql-hive/core'
+import { createHive } from '@lib/core'
 
 const hive = createHive({
   enabled: true,

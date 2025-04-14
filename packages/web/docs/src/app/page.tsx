@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import { Metadata } from 'next';
 import {
   Anchor,
   ArchDecoration,
@@ -26,16 +25,14 @@ import { TeamSection } from '../components/team-section';
 import { TrustedBySection } from '../components/trusted-by-section';
 import { metadata as rootMetadata } from './layout';
 
-export const metadata: Metadata = {
-  title: 'Open-Source GraphQL Federation Platform',
-  description:
-    'Fully Open-Source schema registry, analytics and gateway for GraphQL federation and other GraphQL APIs',
-  alternates: {
-    // to remove leading slash
-    canonical: '.',
-  },
-  openGraph: rootMetadata.openGraph,
-};
+export function generateMetadata() {
+  return {
+    ...rootMetadata,
+    alternates: {
+      canonical: '.',
+    },
+  };
+}
 
 export default function IndexPage(): ReactElement {
   return (

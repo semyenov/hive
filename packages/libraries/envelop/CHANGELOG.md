@@ -1,4 +1,4 @@
-# @graphql-hive/envelop
+# @lib/envelop
 
 ## 0.35.1
 
@@ -7,7 +7,7 @@
 - Updated dependencies
   [[`ee70018`](https://github.com/graphql-hive/console/commit/ee7001883970fac81210ec21ce70a72bfd3b67bb),
   [`a003f78`](https://github.com/graphql-hive/console/commit/a003f781cb1a38d8b00a3256163c50e3893db5f2)]:
-  - @graphql-hive/core@0.10.1
+  - @lib/core@0.10.1
 
 ## 0.35.0
 
@@ -21,7 +21,7 @@
   (e.g. `a0f4c605-6541-4350-8cfe-b31f21a4bf80`)
 
   ```ts
-  import { useHive } from '@graphql-hive/envelop'
+  import { useHive } from '@lib/envelop'
 
   const hivePlugin = useHive({
     enabled: true,
@@ -36,7 +36,7 @@
 
 - Updated dependencies
   [[`494697e`](https://github.com/graphql-hive/console/commit/494697e20f67ef877cd5dd63ccd29984c719ab44)]:
-  - @graphql-hive/core@0.10.0
+  - @lib/core@0.10.0
 
 ## 0.34.1
 
@@ -44,7 +44,7 @@
 
 - Updated dependencies
   [[`ae2d16d`](https://github.com/graphql-hive/console/commit/ae2d16d553e264c813ac65d78eacab3d7a2efeae)]:
-  - @graphql-hive/core@0.9.1
+  - @lib/core@0.9.1
 
 ## 0.34.0
 
@@ -60,7 +60,7 @@
 
 - Updated dependencies
   [[`f7d65fe`](https://github.com/graphql-hive/console/commit/f7d65feb5aaf4f4f86dfc0fe5df3ea4c3df1d7a8)]:
-  - @graphql-hive/core@0.9.0
+  - @lib/core@0.9.0
 
 ## 0.33.13
 
@@ -73,7 +73,7 @@
 
 - Updated dependencies
   [[`ec356a7`](https://github.com/graphql-hive/console/commit/ec356a7784d1f59722f80a69f501f1f250b2f6b2)]:
-  - @graphql-hive/core@0.8.4
+  - @lib/core@0.8.4
 
 ## 0.33.12
 
@@ -81,7 +81,7 @@
 
 - Updated dependencies
   [[`039c66b`](https://github.com/graphql-hive/console/commit/039c66bd24d4339e56b4e1e1fc7f8fa68de7e954)]:
-  - @graphql-hive/core@0.8.3
+  - @lib/core@0.8.3
 
 ## 0.33.11
 
@@ -102,7 +102,7 @@
 
 - Updated dependencies
   [[`c728803`](https://github.com/graphql-hive/platform/commit/c7288038f24c0214b4023994f306c6229c1ce72c)]:
-  - @graphql-hive/core@0.8.2
+  - @lib/core@0.8.2
 
 ## 0.33.9
 
@@ -115,7 +115,7 @@
 
 - Updated dependencies
   [[`be5d39c`](https://github.com/kamilkisiela/graphql-hive/commit/be5d39cbf08d0681d142e83a708d300abc504c44)]:
-  - @graphql-hive/core@0.8.1
+  - @lib/core@0.8.1
 
 ## 0.33.8
 
@@ -123,7 +123,7 @@
 
 - Updated dependencies
   [[`3ffdb6e`](https://github.com/kamilkisiela/graphql-hive/commit/3ffdb6e9466deb3c3aa09eea1445fc4caf698fd5)]:
-  - @graphql-hive/core@0.8.0
+  - @lib/core@0.8.0
 
 ## 0.33.7
 
@@ -131,7 +131,7 @@
 
 - Updated dependencies
   [[`a896642`](https://github.com/kamilkisiela/graphql-hive/commit/a896642197e6d7779ba7ed71f365dfbd80532282)]:
-  - @graphql-hive/core@0.7.1
+  - @lib/core@0.7.1
 
 ## 0.33.6
 
@@ -144,7 +144,7 @@
 - Updated dependencies
   [[`3f03e7b`](https://github.com/kamilkisiela/graphql-hive/commit/3f03e7b3a65707ba8aa04335684f0aa8d261868f),
   [`0a3b24d`](https://github.com/kamilkisiela/graphql-hive/commit/0a3b24d400770c2cc84642959febb9288ad1c1b7)]:
-  - @graphql-hive/core@0.7.0
+  - @lib/core@0.7.0
 
 ## 0.33.5
 
@@ -152,7 +152,7 @@
 
 - Updated dependencies
   [[`f2fef08`](https://github.com/kamilkisiela/graphql-hive/commit/f2fef08e9d1e13cb4a89d3882922db6dc822542e)]:
-  - @graphql-hive/core@0.6.1
+  - @lib/core@0.6.1
 
 ## 0.33.4
 
@@ -160,7 +160,7 @@
 
 - Updated dependencies
   [[`e6dc5c9`](https://github.com/kamilkisiela/graphql-hive/commit/e6dc5c9df34c30c52555b27b0bca50e0be75480b)]:
-  - @graphql-hive/core@0.6.0
+  - @lib/core@0.6.0
 
 ## 0.33.3
 
@@ -168,7 +168,7 @@
 
 - Updated dependencies
   [[`f1e43c6`](https://github.com/kamilkisiela/graphql-hive/commit/f1e43c641f3ebac931839c7dfbdcb3a885167562)]:
-  - @graphql-hive/core@0.5.0
+  - @lib/core@0.5.0
 
 ## 0.33.2
 
@@ -176,7 +176,7 @@
 
 - Updated dependencies
   [[`b8998e7`](https://github.com/kamilkisiela/graphql-hive/commit/b8998e7ead84a2714d13678aaf1e349e648eb90a)]:
-  - @graphql-hive/core@0.4.0
+  - @lib/core@0.4.0
 
 ## 0.33.1
 
@@ -189,7 +189,7 @@
   object/factory function.
 - Updated dependencies
   [[`cbc8364`](https://github.com/kamilkisiela/graphql-hive/commit/cbc836488b4acfb618fd877005ecf0126f1706b6)]:
-  - @graphql-hive/core@0.3.1
+  - @lib/core@0.3.1
 
 ## 0.33.0
 
@@ -197,13 +197,13 @@
 
 - [#4573](https://github.com/kamilkisiela/graphql-hive/pull/4573)
   [`06d465e`](https://github.com/kamilkisiela/graphql-hive/commit/06d465e882b569b6d0dbd5b271d2d98aafaec0b1)
-  Thanks [@kamilkisiela](https://github.com/kamilkisiela)! - Break `@graphql-hive/client` into
+  Thanks [@kamilkisiela](https://github.com/kamilkisiela)! - Break `@lib/client` into
   library-specific packages:
 
-  - `@graphql-hive/core` - Core functionality
-  - `@graphql-hive/apollo` - Apollo Client integration
-  - `@graphql-hive/yoga` - Yoga Server integration
-  - `@graphql-hive/envelop` - Envelop integration
+  - `@lib/core` - Core functionality
+  - `@lib/apollo` - Apollo Client integration
+  - `@lib/yoga` - Yoga Server integration
+  - `@lib/envelop` - Envelop integration
 
   Migration steps are available in the README of each package.
 
@@ -219,8 +219,8 @@
   Migration steps are available in the README.
 
   ```diff
-  - import { useHive } from '@graphql-hive/client';
-  + import { useHive } from '@graphql-hive/envelop';
+  - import { useHive } from '@lib/client';
+  + import { useHive } from '@lib/envelop';
   ```
 
 ### Patch Changes
@@ -228,4 +228,4 @@
 - Updated dependencies
   [[`06d465e`](https://github.com/kamilkisiela/graphql-hive/commit/06d465e882b569b6d0dbd5b271d2d98aafaec0b1),
   [`c5eeac5`](https://github.com/kamilkisiela/graphql-hive/commit/c5eeac5ccef9e2dcc3c8bb33deec0fb95af9552e)]:
-  - @graphql-hive/core@0.3.0
+  - @lib/core@0.3.0

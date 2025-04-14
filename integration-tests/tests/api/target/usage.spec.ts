@@ -10,7 +10,7 @@ import { execute } from 'testkit/graphql';
 import { getServiceHost } from 'testkit/utils';
 import { UTCDate } from '@date-fns/utc';
 // eslint-disable-next-line hive/enforce-deps-in-dev
-import { normalizeOperation } from '@graphql-hive/core';
+import { normalizeOperation } from '@lib/core';
 import { createHive } from '../../../../packages/libraries/core/src';
 import { collectSchemaCoordinates } from '../../../../packages/libraries/core/src/client/collect-schema-coordinates';
 import { clickHouseQuery } from '../../../testkit/clickhouse';

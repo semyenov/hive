@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@graphql-hive/core": "workspace:*",
+    "@lib/core": "workspace:*",
     "@hive/service-common": "workspace:*",
     "@hive/usage-common": "workspace:*",
     "@sentry/node": "7.120.2",

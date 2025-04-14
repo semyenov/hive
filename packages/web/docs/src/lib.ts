@@ -1,34 +1,6 @@
-'use client';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-import { useEffect } from 'react';
-
-const pagesWithFAQ = ['/', '/federation', '/pricing'];
-
-export function isPageWithFaq(path: string) {
-  return pagesWithFAQ.includes(path);
-}
-
-export function AttachPageFAQSchema() {
-  useEffect(() => {
-    const html = document.querySelector('html');
-
-    if (!html) {
-      // This should never happen
-      return;
-    }
-
-    const path = window.location.pathname.replace('/graphql/hive', '/');
-
-    if (isPageWithFaq(path) && !html.hasAttribute('itemscope')) {
-      html.setAttribute('itemscope', '');
-      html.setAttribute('itemtype', 'https://schema.org/FAQPage');
-
-      return () => {
-        html.removeAttribute('itemscope');
-        html.removeAttribute('itemtype');
-      };
-    }
-  }, []);
-
-  return null;
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }

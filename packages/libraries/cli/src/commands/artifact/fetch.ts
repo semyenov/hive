@@ -1,4 +1,4 @@
-import { http, URL } from '@graphql-hive/core';
+import { http, URL } from '@lib/core';
 import { Flags } from '@oclif/core';
 import Command from '../../base-command';
 import {

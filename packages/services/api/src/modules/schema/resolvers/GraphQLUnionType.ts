@@ -1,13 +1,16 @@
-import { Kind } from 'graphql';
-import { __isTypeOf, usage } from '../utils';
-import type { GraphQlUnionTypeResolvers } from './../../../__generated__/types';
+import { Kind } from "graphql";
+import { __isTypeOf, usage } from "../utils";
+import type {
+  GraphQLUnionTypeResolvers,
+  GraphQlUnionTypeResolvers,
+} from "./../../../__generated__/types";
 
-export const GraphQLUnionType: GraphQlUnionTypeResolvers = {
+export const GraphQLUnionType: GraphQLUnionTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.UNION_TYPE_DEFINITION),
-  name: t => t.entity.name,
-  description: t => t.entity.description ?? null,
-  members: t =>
-    t.entity.members.map(i => {
+  name: (t) => t.entity.name,
+  description: (t) => t.entity.description ?? null,
+  members: (t) =>
+    t.entity.members.map((i) => {
       return {
         entity: i,
         usage: t.usage,
@@ -16,13 +19,15 @@ export const GraphQLUnionType: GraphQlUnionTypeResolvers = {
         },
         supergraph: t.supergraph
           ? {
-              ownedByServiceNames: t.supergraph.getUnionMemberOwnedByServices(i.name),
+              ownedByServiceNames: t.supergraph.getUnionMemberOwnedByServices(
+                i.name,
+              ),
             }
           : null,
       };
     }),
   usage,
-  supergraphMetadata: t =>
+  supergraphMetadata: (t) =>
     t.supergraph
       ? {
           ownedByServiceNames: t.supergraph.ownedByServiceNames,

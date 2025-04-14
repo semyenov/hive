@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@graphql-hive/core": "workspace:*"
+    "@lib/core": "workspace:*"
   },
   "dependencies": {
     "@apollo/server": "^4.12.0",

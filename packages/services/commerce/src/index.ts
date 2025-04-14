@@ -15,7 +15,7 @@ import * as Sentry from '@sentry/node';
 import { commerceRouter } from './api';
 import { env } from './environment';
 import { createRateLimiter } from './rate-limit/limiter';
-import { createStripeBilling } from './stripe-billing/billing';
+// import { createStripeBilling, StripeBilling } from './stripe-billing/billing';
 import { createEstimator } from './usage-estimator/estimator';
 
 async function main() {
@@ -84,21 +84,24 @@ async function main() {
       storage: postgres,
     });
 
-    const stripeBilling = createStripeBilling({
-      logger: server.log,
-      stripe: {
-        token: env.stripe.secretKey,
-        syncIntervalMs: env.stripe.syncIntervalMs,
-      },
-      usageEstimator,
-      storage: postgres,
-    });
+    // let stripeBilling: StripeBilling | undefined;
+    // if (env.stripe.enabled) {
+    //   stripeBilling = createStripeBilling({
+    //     logger: server.log,
+    //     stripe: {
+    //       token: env.stripe.secretKey,
+    //       syncIntervalMs: env.stripe.syncIntervalMs,
+    //     },
+    //     usageEstimator,
+    //     storage: postgres,
+    //   });
+    // }
 
     registerShutdown({
       logger: server.log,
       async onShutdown() {
         await server.close();
-        await Promise.all([usageEstimator.stop(), rateLimiter.stop(), stripeBilling.stop()]);
+        await Promise.all([usageEstimator.stop(), rateLimiter.stop()]);
         await postgres.destroy();
       },
     });
@@ -110,7 +113,7 @@ async function main() {
           req,
           usageEstimator,
           rateLimiter,
-          stripeBilling,
+          // stripeBilling,
         };
       },
     });
@@ -145,7 +148,7 @@ async function main() {
       port: env.http.port,
       host: '::',
     });
-    await Promise.all([usageEstimator.start(), rateLimiter.start(), stripeBilling.start()]);
+    await Promise.all([usageEstimator.start(), rateLimiter.start()]);
   } catch (error) {
     server.log.fatal(error);
     Sentry.captureException(error, {

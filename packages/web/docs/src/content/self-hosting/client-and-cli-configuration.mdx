@@ -13,7 +13,7 @@ Instantiate your Hive client with the `selfHosting` option.
   <Tabs.Tab>
 
 ```ts filename="custom.ts"
-import { createHive } from '@graphql-hive/core'
+import { createHive } from '@lib/core'
 
 const hive = createHive({
   enabled: true,
@@ -34,7 +34,7 @@ const hive = createHive({
 
 ```ts filename="graphql-yoga.ts"
 import { createYoga } from 'graphql-yoga'
-import { useHive } from '@graphql-hive/yoga'
+import { useHive } from '@lib/yoga'
 
 const yoga = createYoga({
   plugins: [
@@ -59,7 +59,7 @@ const yoga = createYoga({
 
 ```ts filename="@apollo/server.ts"
 import { createYoga } from '@apollo/server'
-import { useHive } from '@graphql-hive/apollo'
+import { useHive } from '@lib/apollo'
 
 const apollo = new ApolloServer({
   plugins: [
@@ -84,7 +84,7 @@ const apollo = new ApolloServer({
 
 ```ts filename="envelop.ts"
 import { createYoga } from 'graphql-yoga'
-import { useHive } from '@graphql-hive/envelop'
+import { useHive } from '@lib/envelop'
 
 const yoga = createYoga({
   plugins: [

@@ -6,10 +6,10 @@ class User {
   @Field(() => String)
   id: string;
 
-  @Field(() => String)
+  @Field(() => String, { complexity: 2 })
   displayName: string;
 
-  @Field(() => String)
+  @Field(() => String, { complexity: 3 })
   email: string;
 }
 
@@ -24,7 +24,7 @@ class PageInfo {
 
 @ObjectType()
 class PaginatedUsers {
-  @Field(() => [User])
+  @Field(() => [User], { complexity: ({ childComplexity }) => childComplexity })
   nodes: User[];
 
   @Field(() => PageInfo)
@@ -40,16 +40,27 @@ class PaginationInput {
   pageSize: number;
 }
 
-const users: User[] = [];
+const users: User[] = [
+  { id: '1', displayName: 'John Doe', email: 'john@example.com' },
+  { id: '2', displayName: 'Jane Smith', email: 'jane@example.com' },
+  { id: '3', displayName: 'Alice Johnson', email: 'alice@example.com' },
+  { id: '4', displayName: 'Bob Wilson', email: 'bob@example.com' },
+  { id: '5', displayName: 'Charlie Brown', email: 'charlie@example.com' },
+];
 
 @Resolver()
 export class UserResolver {
-  @Query(() => String)
+  @Query(() => String, { complexity: 1 })
   hello(): string {
     return 'Hello, world!';
   }
 
-  @Query(() => PaginatedUsers)
+  @Query(() => PaginatedUsers, {
+    complexity: ({ args, childComplexity }) => {
+      const pageSize = args.pagination?.pageSize || 10;
+      return 5 + childComplexity * Math.min(pageSize, 20);
+    },
+  })
   async users(
     @Arg('pagination', () => PaginationInput) pagination: PaginationInput,
   ): Promise<PaginatedUsers> {
@@ -67,7 +78,10 @@ export class UserResolver {
     };
   }
 
-  @Query(() => User)
+  @Query(() => User, {
+    nullable: true,
+    complexity: ({ childComplexity }) => 3 + childComplexity,
+  })
   async user(@Arg('id', () => String) id: string): Promise<User> {
     const user = users.find(u => u.id === id);
     if (!user)

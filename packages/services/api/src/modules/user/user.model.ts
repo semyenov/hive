@@ -13,10 +13,19 @@ export class User {
   @Field()
   @IsEmail()
   email: string;
+
+  constructor(partial: Partial<User> = {}) {
+    this.id = partial.id ?? crypto.randomUUID();
+    this.name = partial.name ?? '';
+    this.email = partial.email ?? '';
+  }
 }
 
 @InputType()
 export class CreateUserInput {
+  @Field(() => ID)
+  id: string;
+
   @Field()
   @Length(2, 50)
   name: string;
@@ -24,6 +33,12 @@ export class CreateUserInput {
   @Field()
   @IsEmail()
   email: string;
+
+  constructor(partial: Partial<User> = {}) {
+    this.id = partial.id ?? crypto.randomUUID();
+    this.name = partial.name ?? '';
+    this.email = partial.email ?? '';
+  }
 }
 
 @InputType()
@@ -38,4 +53,10 @@ export class UpdateUserInput {
   @Field({ nullable: true })
   @IsEmail()
   email?: string;
+
+  constructor(partial: Partial<User> = {}) {
+    this.id = partial.id ?? crypto.randomUUID();
+    this.name = partial.name ?? '';
+    this.email = partial.email ?? '';
+  }
 }

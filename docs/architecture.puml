@@ -1,4 +1,4 @@
-@startuml
+@startuml architecture
 
 actor "UI User" as uiuser
 actor "CLI User" as cliuser

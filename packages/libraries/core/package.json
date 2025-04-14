@@ -1,5 +1,5 @@
 {
-  "name": "@graphql-hive/core",
+  "name": "@lib/core",
   "version": "0.10.1",
   "type": "module",
   "repository": {
@@ -42,7 +42,7 @@
     "check:build": "bob check"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^16.10.0"
   },
   "dependencies": {
     "@apollo/server": "^4.12.0",
@@ -59,7 +59,6 @@
     "@apollo/subgraph": "2.9.3",
     "@types/async-retry": "1.4.8",
     "@types/lodash.sortby": "4.7.9",
-    "graphql": "16.10.0",
     "nock": "14.0.0",
     "tslib": "2.8.1",
     "vitest": "3.0.5"

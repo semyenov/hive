@@ -147,11 +147,11 @@ Providing the `target` for the usage reporting configuration is mandatory for th
 
 <Tabs.Tab>
 
-Upgrade [`@graphql-hive/yoga@0.41.0`](/docs/other-integrations/graphql-yoga) to at least version
+Upgrade [`@lib/yoga@0.41.0`](/docs/other-integrations/graphql-yoga) to at least version
 [`0.41.0`](https://github.com/graphql-hive/console/releases/tag/%40graphql-hive%2Fyoga%400.41.0).
 
 ```ts {7}
-import { useHive } from '@graphql-hive/yoga'
+import { useHive } from '@lib/yoga'
 
 const hivePlugin = useHive({
   enabled: true,
@@ -173,13 +173,12 @@ const hivePlugin = useHive({
 
 <Tabs.Tab>
 
-Upgrade
-[`@graphql-hive/apollo`](https://the-guild.dev/graphql/hive/docs/other-integrations/@apollo/server)
-to at least version
+Upgrade [`@lib/apollo`](https://the-guild.dev/graphql/hive/docs/other-integrations/apollo-server) to
+at least version
 [`0.38.0`](https://github.com/graphql-hive/console/releases/tag/%40graphql-hive%2Fapollo%400.38.0).
 
 ```ts {7}
-import { useHive } from '@graphql-hive/apollo'
+import { useHive } from '@lib/apollo'
 
 const hivePlugin = useHive({
   enabled: true,
@@ -192,7 +191,7 @@ const hivePlugin = useHive({
 
 **Further Reading:**
 
-- [Apollo Integration Guide](/docs/other-integrations/@apollo/server)
+- [Apollo Integration Guide](/docs/other-integrations/apollo-server)
 - [Hive Client Reference](/docs/api-reference/client)
 
 </Tabs.Tab>
@@ -201,11 +200,11 @@ const hivePlugin = useHive({
 
 <Tabs.Tab>
 
-Upgrade [`@graphql-hive/envelop`](/docs/other-integrations/envelop) to at least version
+Upgrade [`@lib/envelop`](/docs/other-integrations/envelop) to at least version
 [`0.35.0`](https://github.com/graphql-hive/console/releases/tag/%40graphql-hive%2Fenvelop%400.35.0).
 
 ```ts {7}
-import { useHive } from '@graphql-hive/envelop'
+import { useHive } from '@lib/envelop'
 
 const hivePlugin = useHive({
   enabled: true,
@@ -227,11 +226,11 @@ const hivePlugin = useHive({
 
 <Tabs.Tab>
 
-Upgrade `@graphql-hive/core` to at least version
+Upgrade `@lib/core` to at least version
 [`0.10.0`](https://github.com/graphql-hive/console/releases/tag/%40graphql-hive%2Fcore%400.10.0).
 
 ```ts {7}
-import { createHive } from '@graphql-hive/core'
+import { createHive } from '@lib/core'
 
 const hive = createHive({
   enabled: true,

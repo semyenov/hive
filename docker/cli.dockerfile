@@ -6,7 +6,7 @@ ARG CLI_VERSION
 
 WORKDIR /usr/src/app
 
-RUN npm install --global @graphql-hive/cli@${CLI_VERSION}
+RUN npm install --global @lib/cli@${CLI_VERSION}
 
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.title=$IMAGE_TITLE

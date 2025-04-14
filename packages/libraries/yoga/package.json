@@ -1,5 +1,5 @@
 {
-  "name": "@graphql-hive/yoga",
+  "name": "@lib/yoga",
   "version": "0.41.1",
   "type": "module",
   "description": "GraphQL Hive + GraphQL Yoga",
@@ -43,11 +43,11 @@
     "check:build": "bob check"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
+    "graphql": "^16.10.0",
     "graphql-yoga": "^5.10.8"
   },
   "dependencies": {
-    "@graphql-hive/core": "workspace:*",
+    "@lib/core": "workspace:*",
     "@graphql-yoga/plugin-persisted-operations": "^3.9.0",
     "@apollo/server": "^4.12.0"
   },

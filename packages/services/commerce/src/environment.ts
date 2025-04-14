@@ -87,10 +87,10 @@ const RateLimitModel = zod.object({
   LIMIT_CACHE_UPDATE_INTERVAL_MS: emptyString(NumberFromString.optional()),
 });
 
-const StripeModel = zod.object({
-  STRIPE_SECRET_KEY: zod.string(),
-  STRIPE_SYNC_INTERVAL_MS: emptyString(NumberFromString.optional()),
-});
+// const StripeModel = zod.object({
+//   STRIPE_SECRET_KEY: zod.string(),
+//   STRIPE_SYNC_INTERVAL_MS: emptyString(NumberFromString.optional()),
+// });
 
 const configs = {
   base: EnvironmentModel.safeParse(process.env),
@@ -102,7 +102,7 @@ const configs = {
   tracing: OpenTelemetryConfigurationModel.safeParse(process.env),
   hiveServices: HiveServicesModel.safeParse(process.env),
   rateLimit: RateLimitModel.safeParse(process.env),
-  stripe: StripeModel.safeParse(process.env),
+  // stripe: StripeModel.safeParse(process.env),
 };
 
 const environmentErrors: Array<string> = [];
@@ -135,7 +135,7 @@ const log = extractConfig(configs.log);
 const tracing = extractConfig(configs.tracing);
 const hiveServices = extractConfig(configs.hiveServices);
 const rateLimit = extractConfig(configs.rateLimit);
-const stripe = extractConfig(configs.stripe);
+// const stripe = extractConfig(configs.stripe);
 
 export const env = {
   environment: base.ENVIRONMENT,
@@ -185,8 +185,9 @@ export const env = {
   rateLimit: {
     limitCacheUpdateIntervalMs: rateLimit.LIMIT_CACHE_UPDATE_INTERVAL_MS ?? 60_000,
   },
-  stripe: {
-    secretKey: stripe.STRIPE_SECRET_KEY,
-    syncIntervalMs: stripe.STRIPE_SYNC_INTERVAL_MS ?? 10 * 60_000,
-  },
+  // stripe: {
+  //   enabled: false,
+  //   // secretKey: stripe.STRIPE_SECRET_KEY,
+  //   //   syncIntervalMs: stripe.STRIPE_SYNC_INTERVAL_MS ?? 10 * 60_000,
+  // },
 } as const;

@@ -1,8 +1,8 @@
 ---
 title: Specialized packages for GraphQL Servers & Cloudflare Worker Support
 description:
-  Enhanced integration with GraphQL servers, deprecating `@graphql-hive/client` and adding support
-  for Cloudflare Workers.
+  Enhanced integration with GraphQL servers, deprecating `@lib/client` and adding support for
+  Cloudflare Workers.
 date: 2024-04-23
 authors: [kamil]
 ---
@@ -24,8 +24,8 @@ To address this, **we're introducing library-specific packages**. These packages
 seamlessly integrate with your GraphQL server of choice, improving the developer experience.
 
 <Callout type="warning">
-  As part of this update, we'll be sunsetting the @graphql-hive/client package in favor of new
-  specialized packages.
+  As part of this update, we'll be sunsetting the @lib/client package in favor of new specialized
+  packages.
 </Callout>
 
 ### Migration guide
@@ -34,50 +34,50 @@ seamlessly integrate with your GraphQL server of choice, improving the developer
 
   <Tabs.Tab>
 
-1. Remove `@graphql-hive/client` from your dependencies.
-1. Install `@graphql-hive/yoga`.
+1. Remove `@lib/client` from your dependencies.
+1. Install `@lib/yoga`.
 
 ```diff filename="yoga.ts"
 import { createYoga } from 'graphql-yoga';
-- import { useHive } from '@graphql-hive/client';
-+ import { useHive } from '@graphql-hive/yoga';
+- import { useHive } from '@lib/client';
++ import { useHive } from '@lib/yoga';
 ```
 
   </Tabs.Tab>
 
 <Tabs.Tab>
 
-1. Remove `@graphql-hive/client` from your dependencies.
-1. Install `@graphql-hive/apollo`.
+1. Remove `@lib/client` from your dependencies.
+1. Install `@lib/apollo`.
 
 ```diff filename="@apollo/server.ts"
 import { ApolloServer } from '@apollo/server';
-- import { hiveApollo } from '@graphql-hive/client';
-+ import { useHive } from '@graphql-hive/apollo';
+- import { hiveApollo } from '@lib/client';
++ import { useHive } from '@lib/apollo';
 ```
 
   </Tabs.Tab>
 
 <Tabs.Tab>
 
-1. Remove `@graphql-hive/client` from your dependencies.
-1. Install `@graphql-hive/envelop`.
+1. Remove `@lib/client` from your dependencies.
+1. Install `@lib/envelop`.
 
 ```diff filename="envelop.ts"
-- import { useHive } from '@graphql-hive/client';
-+ import { useHive } from '@graphql-hive/envelop';
+- import { useHive } from '@lib/client';
++ import { useHive } from '@lib/envelop';
 ```
 
   </Tabs.Tab>
 
 <Tabs.Tab>
 
-1. Remove `@graphql-hive/client` from your dependencies.
-1. Install `@graphql-hive/core`.
+1. Remove `@lib/client` from your dependencies.
+1. Install `@lib/core`.
 
 ```diff filename="custom-server.ts"
-- import { createHive } from '@graphql-hive/client';
-+ import { createHive } from '@graphql-hive/core';
+- import { createHive } from '@lib/client';
++ import { createHive } from '@lib/core';
 ```
 
   </Tabs.Tab>
@@ -95,7 +95,7 @@ environments with the Fetch API.
 
 ```typescript filename="worker.ts"
 import { createYoga } from 'graphql-yoga'
-import { createHive, useHive } from '@graphql-hive/yoga'
+import { createHive, useHive } from '@lib/yoga'
 
 export default {
   async fetch(request, env, ctx) {

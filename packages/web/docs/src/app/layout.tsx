@@ -72,10 +72,10 @@ export default async function HiveDocsLayout({ children }: { children: ReactNode
 
   return (
     <HiveLayout
-      lightOnlyPages={lightOnlyPages}
       head={<DynamicMetaTags pageMap={pageMap} />}
       docsRepositoryBase="https://github.com/graphql-hive/platform/tree/main/packages/web/docs"
       fontFamily={neueMontreal.style.fontFamily}
+      lightOnlyPages={lightOnlyPages}
       navbar={
         <HiveNavigation
           companyMenuChildren={<GraphQLConfCard image={graphQLConfLocalImage} />}

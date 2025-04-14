@@ -267,12 +267,12 @@ For further information, please refer to the
 For GraphQL Yoga you can use the Hive CDN for resolving persisted documents via the Hive SDK.
 
 ```sh npm2yarn
-npm i -D @graphql-hive/yoga
+npm i -D @lib/yoga
 ```
 
 ```typescript filename="Persisted Documents with GraphQL Yoga" {10-16}
 import { createYoga } from 'graphql-hive'
-import { useHive } from '@graphql-hive/yoga'
+import { useHive } from '@lib/yoga'
 import schema from './schema.js'
 
 const yoga = createYoga({
@@ -304,12 +304,12 @@ For further configuration options, please refer to the
 For Apollo Server you can use the Hive CDN for resolving persisted documents via the Hive SDK.
 
 ```sh npm2yarn
-npm i -D @graphql-hive/apollo
+npm i -D @lib/apollo
 ```
 
 ```typescript filename="Persisted Documents with Apollo Server" {10-16}
 import { ApolloServer } from '@apollo/server'
-import { useHive } from '@graphql-hive/apollo'
+import { useHive } from '@lib/apollo'
 import schema from './schema.js'
 
 const server = new ApolloServer({

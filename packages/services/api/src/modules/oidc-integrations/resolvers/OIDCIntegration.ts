@@ -1,15 +1,21 @@
-import { OrganizationManager } from '../../organization/providers/organization-manager';
-import { OIDCIntegrationsProvider } from '../providers/oidc-integrations.provider';
-import type { OidcIntegrationResolvers } from './../../../__generated__/types';
+import { OrganizationManager } from "../../organization/providers/organization-manager";
+import { OIDCIntegrationsProvider } from "../providers/oidc-integrations.provider";
+import type {
+  OIDCIntegrationResolvers,
+  OidcIntegrationResolvers,
+} from "./../../../__generated__/types";
 
-export const OIDCIntegration: OidcIntegrationResolvers = {
-  id: oidcIntegration => oidcIntegration.id,
-  tokenEndpoint: oidcIntegration => oidcIntegration.tokenEndpoint,
-  userinfoEndpoint: oidcIntegration => oidcIntegration.userinfoEndpoint,
-  authorizationEndpoint: oidcIntegration => oidcIntegration.authorizationEndpoint,
-  clientId: oidcIntegration => oidcIntegration.clientId,
+export const OIDCIntegration: OIDCIntegrationResolvers = {
+  id: (oidcIntegration) => oidcIntegration.id,
+  tokenEndpoint: (oidcIntegration) => oidcIntegration.tokenEndpoint,
+  userinfoEndpoint: (oidcIntegration) => oidcIntegration.userinfoEndpoint,
+  authorizationEndpoint: (oidcIntegration) =>
+    oidcIntegration.authorizationEndpoint,
+  clientId: (oidcIntegration) => oidcIntegration.clientId,
   clientSecretPreview: (oidcIntegration, _, { injector }) =>
-    injector.get(OIDCIntegrationsProvider).getClientSecretPreview(oidcIntegration),
+    injector
+      .get(OIDCIntegrationsProvider)
+      .getClientSecretPreview(oidcIntegration),
   /**
    * Fallbacks to Viewer if default member role is not set
    */
@@ -40,5 +46,8 @@ export const OIDCIntegration: OidcIntegrationResolvers = {
     }
 
     return role;
+  },
+  organization: async (_parent, _arg, _ctx) => {
+    /* OIDCIntegration.organization resolver is required because OIDCIntegration.organization exists but OIDCIntegrationMapper.organization does not */
   },
 };

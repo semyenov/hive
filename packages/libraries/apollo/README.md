@@ -6,14 +6,14 @@ other GraphQL APIs.
 
 ---
 
-[Documentation](https://the-guild.dev/graphql/hive/docs/other-integrations/@apollo/server)
+[Documentation](https://the-guild.dev/graphql/hive/docs/other-integrations/apollo-server)
 
-## Migration from `@graphql-hive/client`
+## Migration from `@lib/client`
 
-The `@graphql-hive/client` package has been deprecated in favor of library-specific packages.
+The `@lib/client` package has been deprecated in favor of library-specific packages.
 
-1. Install the `@graphql-hive/apollo` package.
-1. Remove the `@graphql-hive/client` package from your dependencies.
-1. Replace `@graphql-hive/client` with `@graphql-hive/apollo` in your codebase.
+1. Install the `@lib/apollo` package.
+1. Remove the `@lib/client` package from your dependencies.
+1. Replace `@lib/client` with `@lib/apollo` in your codebase.
 1. Replace `hiveApollo` with `useHive` in your codebase.
 1. Done

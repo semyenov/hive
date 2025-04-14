@@ -1,13 +1,16 @@
-import { Kind } from 'graphql';
-import { __isTypeOf, usage } from '../utils';
-import type { GraphQlEnumTypeResolvers } from './../../../__generated__/types';
+import { Kind } from "graphql";
+import { __isTypeOf, usage } from "../utils";
+import type {
+  GraphQLEnumTypeResolvers,
+  GraphQlEnumTypeResolvers,
+} from "./../../../__generated__/types";
 
-export const GraphQLEnumType: GraphQlEnumTypeResolvers = {
+export const GraphQLEnumType: GraphQLEnumTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.ENUM_TYPE_DEFINITION),
-  name: t => t.entity.name,
-  description: t => t.entity.description ?? null,
-  values: t =>
-    t.entity.values.map(v => ({
+  name: (t) => t.entity.name,
+  description: (t) => t.entity.description ?? null,
+  values: (t) =>
+    t.entity.values.map((v) => ({
       entity: v,
       parent: {
         coordinate: t.entity.name,
@@ -15,15 +18,20 @@ export const GraphQLEnumType: GraphQlEnumTypeResolvers = {
       usage: t.usage,
       supergraph: t.supergraph
         ? {
-            ownedByServiceNames: t.supergraph.getEnumValueOwnedByServices(v.name),
+            ownedByServiceNames: t.supergraph.getEnumValueOwnedByServices(
+              v.name,
+            ),
           }
         : null,
     })),
   usage,
-  supergraphMetadata: t =>
+  supergraphMetadata: (t) =>
     t.supergraph
       ? {
           ownedByServiceNames: t.supergraph.ownedByServiceNames,
         }
       : null,
+  deprecationReason: async (_parent, _arg, _ctx) => {
+    /* GraphQLEnumType.deprecationReason resolver is required because GraphQLEnumType.deprecationReason exists but GraphQLEnumTypeMapper.deprecationReason does not */
+  },
 };

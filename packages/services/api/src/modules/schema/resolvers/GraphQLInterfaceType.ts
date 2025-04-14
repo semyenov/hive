@@ -1,13 +1,16 @@
-import { Kind } from 'graphql';
-import { __isTypeOf, usage } from '../utils';
-import type { GraphQlInterfaceTypeResolvers } from './../../../__generated__/types';
+import { Kind } from "graphql";
+import { __isTypeOf, usage } from "../utils";
+import type {
+  GraphQLInterfaceTypeResolvers,
+  GraphQlInterfaceTypeResolvers,
+} from "./../../../__generated__/types";
 
-export const GraphQLInterfaceType: GraphQlInterfaceTypeResolvers = {
+export const GraphQLInterfaceType: GraphQLInterfaceTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.INTERFACE_TYPE_DEFINITION),
-  name: t => t.entity.name,
-  description: t => t.entity.description ?? null,
-  fields: t =>
-    t.entity.fields.map(f => ({
+  name: (t) => t.entity.name,
+  description: (t) => t.entity.description ?? null,
+  fields: (t) =>
+    t.entity.fields.map((f) => ({
       entity: f,
       parent: {
         coordinate: t.entity.name,
@@ -20,9 +23,9 @@ export const GraphQLInterfaceType: GraphQlInterfaceTypeResolvers = {
           }
         : null,
     })),
-  interfaces: t => t.entity.interfaces,
+  interfaces: (t) => t.entity.interfaces,
   usage,
-  supergraphMetadata: t =>
+  supergraphMetadata: (t) =>
     t.supergraph
       ? {
           ownedByServiceNames: t.supergraph.ownedByServiceNames,

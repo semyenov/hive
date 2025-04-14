@@ -8,7 +8,7 @@ other GraphQL APIs.
 
 A CLI util to manage and control your Hive.
 
-[![Version](https://img.shields.io/npm/v/@graphql-hive/cli.svg)](https://npmjs.org/package/@graphql-hive/cli)
+[![Version](https://img.shields.io/npm/v/@lib/cli.svg)](https://npmjs.org/package/@lib/cli)
 
 ## Installation
 
@@ -17,9 +17,9 @@ A CLI util to manage and control your Hive.
 If you are running a JavaScript/NodeJS project, you can install Hive CLI from the `npm` registry:
 
 ```
-pnpm install -D @graphql-hive/cli
-yarn add -D @graphql-hive/cli
-npm install -D @graphql-hive/cli
+pnpm install -D @lib/cli
+yarn add -D @lib/cli
+npm install -D @lib/cli
 ```
 
 > We recommend installing Hive CLI as part of your project, under `devDependencies`, instead of

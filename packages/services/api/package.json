@@ -7,7 +7,7 @@
     "node": ">=12"
   },
   "peerDependencies": {
-    "graphql": "^16.0.0",
+    "graphql": "^16.10.0",
     "reflect-metadata": "0.2.2"
   },
   "devDependencies": {
@@ -15,7 +15,7 @@
     "@aws-sdk/s3-request-presigner": "3.723.0",
     "@bentocache/plugin-prometheus": "0.2.0",
     "@date-fns/utc": "2.1.0",
-    "@graphql-hive/core": "workspace:*",
+    "@lib/core": "workspace:*",
     "@graphql-hive/signal": "1.0.0",
     "@graphql-inspector/core": "5.1.0-alpha-20231208113249-34700c8a",
     "@graphql-tools/merge": "9.0.24",
@@ -53,7 +53,6 @@
     "date-fns": "4.1.0",
     "fast-json-stable-stringify": "2.1.0",
     "got": "14.4.7",
-    "graphql": "16.9.0",
     "graphql-modules": "3.0.0",
     "graphql-parse-resolve-info": "4.13.0",
     "graphql-scalars": "1.24.0",

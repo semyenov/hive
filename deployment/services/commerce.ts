@@ -39,11 +39,11 @@ export function deployCommerce({
   clickhouse: Clickhouse;
   sentry: Sentry;
 }) {
-  const billingConfig = new pulumi.Config('billing');
-  const stripeSecret = new StripeSecret('stripe', {
-    stripePrivateKey: billingConfig.requireSecret('stripePrivateKey'),
-    stripePublicKey: billingConfig.require('stripePublicKey'),
-  });
+  // const billingConfig = new pulumi.Config('billing');
+  // const stripeSecret = new StripeSecret('stripe', {
+  //   stripePrivateKey: billingConfig.requireSecret('stripePrivateKey'),
+  //   stripePublicKey: billingConfig.require('stripePublicKey'),
+  // });
   const { deployment, service } = new ServiceDeployment(
     'commerce',
     {
@@ -69,7 +69,7 @@ export function deployCommerce({
     },
     [dbMigrations],
   )
-    .withSecret('STRIPE_SECRET_KEY', stripeSecret, 'stripePrivateKey')
+    // .withSecret('STRIPE_SECRET_KEY', stripeSecret, 'stripePrivateKey')
     .withSecret('POSTGRES_HOST', postgres.pgBouncerSecret, 'host')
     .withSecret('POSTGRES_PORT', postgres.pgBouncerSecret, 'port')
     .withSecret('POSTGRES_USER', postgres.pgBouncerSecret, 'user')
@@ -87,6 +87,6 @@ export function deployCommerce({
   return {
     deployment,
     service,
-    stripeSecret,
+    // stripeSecret,
   };
 }

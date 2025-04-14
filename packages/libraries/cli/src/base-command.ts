@@ -2,8 +2,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { env } from 'node:process';
 import { print } from 'graphql';
 import type { ExecutionResult } from 'graphql';
-import { http } from '@graphql-hive/core';
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import { http } from '@lib/core';
 import { Command, Flags, Interfaces } from '@oclif/core';
 import { Config, GetConfigurationValueType, ValidConfigurationKeys } from './helpers/config';
 import {

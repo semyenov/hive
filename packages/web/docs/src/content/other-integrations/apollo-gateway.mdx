@@ -35,7 +35,7 @@ flowchart LR
 ## Installation
 
 ```sh npm2yarn
-npm i @graphql-hive/apollo
+npm i @lib/apollo
 ```
 
 <Callout type="info">
@@ -43,8 +43,8 @@ npm i @graphql-hive/apollo
   includes a runtime to send usage reports and schemas to Hive registry.
 </Callout>
 
-The `@graphql-hive/apollo` package exports a utility function called `createSupergraphManager` that
-fetches the Supergraph schema from the Hive's CDN, and also a
+The `@lib/apollo` package exports a utility function called `createSupergraphManager` that fetches
+the Supergraph schema from the Hive's CDN, and also a
 [Apollo-Server plugin](https://www.apollographql.com/docs/@apollo/server/) for reporting operations.
 
 ## Supergraph SDL from the CDN
@@ -58,7 +58,7 @@ With the endpoint and CDN access token available, you can integrate Hive with Ap
 import { ApolloGateway } from '@apollo/gateway'
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
-import { createSupergraphManager } from '@graphql-hive/apollo'
+import { createSupergraphManager } from '@lib/apollo'
 
 const gateway = new ApolloGateway({
   // Apollo Gateway will fetch Supergraph from Hive CDN
@@ -88,7 +88,7 @@ To enable Usage Reporting with your Apollo Gateway, you can use the Hive plugin 
 import { ApolloGateway } from '@apollo/gateway'
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
-import { createSupergraphManager, useHive } from '@graphql-hive/apollo'
+import { createSupergraphManager, useHive } from '@lib/apollo'
 
 const gateway = new ApolloGateway({
   // Apollo Gateway will fetch Supergraph from Hive CDN
@@ -128,5 +128,5 @@ console.log(`🚀 Server ready at ${url}`)
 - [Get started with Apollo Federation and Hive guide](/docs/get-started/apollo-federation)
 - [Apollo Gateway documentation](https://www.apollographql.com/docs/federation/v1/gateway/)
 - [Apollo Server](https://www.apollographql.com/docs/@apollo/server/)
-- [`@graphql-hive/apollo` source code](https://github.com/graphql-hive/platform/tree/main/packages/libraries/apollo)
+- [`@lib/apollo` source code](https://github.com/graphql-hive/platform/tree/main/packages/libraries/apollo)
 - [`HivePluginOptions` configuration reference](https://github.com/graphql-hive/platform/blob/main/packages/libraries/core/src/client/types.ts)

@@ -2,7 +2,7 @@
 
 set -u
 
-GITHUB_OWNER="graphql-hive"
+GITHUB_OWNER="@graphql-hive"
 GITHUB_REPO="gateway"
 BINARY_NAME="hive-gateway"
 
@@ -11,7 +11,7 @@ if [ "$#" -eq 1 ]; then
   TARGET_VERSION=$1
 else
   echo "Version not provided. Retrieving the latest version..."
-  TARGET_VERSION=$(npm show @graphql-hive/gateway version 2> /dev/null)
+  TARGET_VERSION=$(npm show @graphql-hive/gateway version 2>/dev/null)
   if [ -z "$TARGET_VERSION" ]; then
     echo "Could not retrieve the latest version of @graphql-hive/gateway."
     exit 1
@@ -25,7 +25,6 @@ fetch_and_prepare_binary() {
   check_non_empty "$architecture" "architecture"
 
   RELEASE_TAG="hive-gateway%40$TARGET_VERSION"
-
   DOWNLOAD_URL="https://github.com/$GITHUB_OWNER/$GITHUB_REPO/releases/download/$RELEASE_TAG/$BINARY_NAME-${architecture}.gz"
 
   destination_file="./$BINARY_NAME-${architecture}.gz"
@@ -57,29 +56,29 @@ identify_architecture() {
   cpu_type="$(uname -m)"
 
   case "$os_type" in
-    Linux)
-      os_type="Linux"
-      ;;
-    Darwin)
-      os_type="macOS"
-      ;;
-    *)
-      echo "No binaries available for OS: $os_type"
-      return 1
-      ;;
+  Linux)
+    os_type="Linux"
+    ;;
+  Darwin)
+    os_type="macOS"
+    ;;
+  *)
+    echo "No binaries available for OS: $os_type"
+    return 1
+    ;;
   esac
 
   case "$cpu_type" in
-    x86_64 | x64 | amd64)
-      cpu_type="X64"
-      ;;
-    arm64 | aarch64)
-      cpu_type="ARM64"
-      ;;
-    *)
-      echo "No binaries available for CPU architecture: $cpu_type"
-      return 1
-      ;;
+  x86_64 | x64 | amd64)
+    cpu_type="X64"
+    ;;
+  arm64 | aarch64)
+    cpu_type="ARM64"
+    ;;
+  *)
+    echo "No binaries available for CPU architecture: $cpu_type"
+    return 1
+    ;;
   esac
 
   ARCH_DETECTED="$os_type-$cpu_type"

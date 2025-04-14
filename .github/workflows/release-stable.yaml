@@ -71,11 +71,11 @@ jobs:
       - name: extract published cli version
         if:
           steps.changesets.outputs.published && contains(steps.changesets.outputs.publishedPackages,
-          '"@graphql-hive/cli"')
+          '"@lib/cli"')
         id: cli
         run: |
           echo '${{steps.changesets.outputs.publishedPackages}}' > cli-ver.json
-          VERSION=`echo $(jq -r '.[] | select(.name | endswith("@graphql-hive/cli")).version' cli-ver.json)`
+          VERSION=`echo $(jq -r '.[] | select(.name | endswith("@lib/cli")).version' cli-ver.json)`
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "publish=true" >> $GITHUB_OUTPUT
 

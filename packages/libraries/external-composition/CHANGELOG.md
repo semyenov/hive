@@ -1,4 +1,4 @@
-# @graphql-hive/external-composition
+# @lib/external-composition
 
 ## 0.0.4
 

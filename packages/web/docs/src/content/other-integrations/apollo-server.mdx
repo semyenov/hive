@@ -3,7 +3,7 @@ import { Callout } from '@theguild/components'
 # Apollo-Server
 
 You can send usage reports to the Hive registry from your Apollo-Server instance using the
-`@graphql-hive/apollo` package.
+`@lib/apollo` package.
 
 <Callout type="warning">
   In case you want to use Apollo-Server as a Federation gateway, please refer to the [Apollo Gateway
@@ -13,7 +13,7 @@ You can send usage reports to the Hive registry from your Apollo-Server instance
 ## Installation
 
 ```sh npm2yarn
-npm i @graphql-hive/apollo
+npm i @lib/apollo
 ```
 
 <Callout type="info">
@@ -21,7 +21,7 @@ npm i @graphql-hive/apollo
   includes a runtime to send usage reports to the Hive registry.
 </Callout>
 
-The `@graphql-hive/apollo` package exports a
+The `@lib/apollo` package exports a
 [Apollo-Server plugin](https://www.apollographql.com/docs/@apollo/server/), that can be used
 directly.
 
@@ -39,8 +39,8 @@ Follow the [CI/CD instructions](./ci-cd.mdx) for automating the process.
 
 ### Usage Reporting
 
-You can report usage to the Hive registry by using the `@graphql-hive/apollo` package. Depending on
-your GraphQL server setup the configuration might differ.
+You can report usage to the Hive registry by using the `@lib/apollo` package. Depending on your
+GraphQL server setup the configuration might differ.
 
 <Callout>
   For more configuration options, such as sampling, please refer to the [Hive client
@@ -54,7 +54,7 @@ You can send usage reporting to Hive registry by using the `usage` section of th
 ```ts filename="Node.js Apollo Server S setup" {8-12,19-21}
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
-import { useHive } from '@graphql-hive/apollo'
+import { useHive } from '@lib/apollo'
 
 const testServer = new ApolloServer({
   schema,
@@ -133,7 +133,7 @@ import { WebSocketServer } from 'ws'
 import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
-import { createHive, useHive } from '@graphql-hive/apollo'
+import { createHive, useHive } from '@lib/apollo'
 import schema from './schema'
 
 const PORT = 3000
@@ -218,6 +218,6 @@ const client = createClient({
 
 ## Additional Resources
 
-- [`@graphql-hive/apollo` source code](https://github.com/graphql-hive/platform/tree/main/packages/libraries/apollo)
+- [`@lib/apollo` source code](https://github.com/graphql-hive/platform/tree/main/packages/libraries/apollo)
 - [`HivePluginOptions` configuration reference](https://github.com/graphql-hive/platform/blob/main/packages/libraries/core/src/client/types.ts)
 - [Apollo Server](https://www.apollographql.com/docs/@apollo/server/)

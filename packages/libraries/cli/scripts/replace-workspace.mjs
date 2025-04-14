@@ -8,8 +8,8 @@ const corePackageJsonAt = join(__dirname, '..', '..', 'core', 'package.json');
 const version = JSON.parse(readFileSync(corePackageJsonAt, 'utf-8')).version;
 
 const newPkg = readFileSync(cliPackageJsonAt, 'utf-8').replace(
-  '"@graphql-hive/core": "workspace:*"',
-  `"@graphql-hive/core": "${version}"`,
+  '"@lib/core": "workspace:*"',
+  `"@lib/core": "${version}"`,
 );
 
 writeFileSync(cliPackageJsonAt, newPkg);

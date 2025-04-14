@@ -4,3 +4,9 @@ services:
     ports:
       - '8080:8080'
       - '9080:9080'
+  gateway:
+    image: ghcr.io/graphql-hive/gateway:latest
+    ports:
+      - '3000:3000'
+    environment:
+      - GATEWAY_CONFIG_PATH=/app/gateway.config.ts

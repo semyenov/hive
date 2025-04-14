@@ -1,4 +1,4 @@
-# @graphql-hive/core
+# @lib/core
 
 ## 0.10.1
 
@@ -26,7 +26,7 @@
   (e.g. `a0f4c605-6541-4350-8cfe-b31f21a4bf80`)
 
   ```ts
-  import { createHive } from '@graphql-hive/core'
+  import { createHive } from '@lib/core'
 
   const hive = createHive({
     enabled: true,
@@ -109,7 +109,7 @@
 - [#5367](https://github.com/kamilkisiela/graphql-hive/pull/5367)
   [`a896642`](https://github.com/kamilkisiela/graphql-hive/commit/a896642197e6d7779ba7ed71f365dfbd80532282)
   Thanks [@kamilkisiela](https://github.com/kamilkisiela)! - Move createSupergraphSDLFetcher to
-  @graphql-hive/core package
+  @lib/core package
 
 ## 0.7.0
 
@@ -179,7 +179,7 @@
 
 - [#4573](https://github.com/kamilkisiela/graphql-hive/pull/4573)
   [`06d465e`](https://github.com/kamilkisiela/graphql-hive/commit/06d465e882b569b6d0dbd5b271d2d98aafaec0b1)
-  Thanks [@kamilkisiela](https://github.com/kamilkisiela)! - Moved most of @graphql-hive/client code
+  Thanks [@kamilkisiela](https://github.com/kamilkisiela)! - Moved most of @lib/client code
   here
 
 - [#4494](https://github.com/kamilkisiela/graphql-hive/pull/4494)

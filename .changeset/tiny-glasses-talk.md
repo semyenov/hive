@@ -1,8 +1,8 @@
 ---
-'@graphql-hive/core': minor
-'@graphql-hive/apollo': minor
-'@graphql-hive/envelop': minor
-'@graphql-hive/yoga': minor
+'@lib/core': minor
+'@lib/apollo': minor
+'@lib/envelop': minor
+'@lib/yoga': minor
 ---
 
 Add error logging for invalid combinations of the `target` and `token` configuration.

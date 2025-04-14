@@ -1,5 +1,6 @@
 import { DocumentNode, ExecutionArgs, GraphQLError, GraphQLSchema, Kind, parse } from 'graphql';
 import { _createLRUCache, YogaServer, type GraphQLParams, type Plugin } from 'graphql-yoga';
+import { usePersistedOperations } from '@graphql-yoga/plugin-persisted-operations';
 import {
   autoDisposeSymbol,
   CollectUsageCallback,
@@ -8,16 +9,15 @@ import {
   HivePluginOptions,
   isAsyncIterable,
   isHiveClient,
-} from '@graphql-hive/core';
-import { usePersistedOperations } from '@graphql-yoga/plugin-persisted-operations';
+} from '@lib/core';
 
 export {
   atLeastOnceSampler,
   createSchemaFetcher,
   createServicesFetcher,
   createSupergraphSDLFetcher,
-} from '@graphql-hive/core';
-export type { SupergraphSDLFetcherOptions } from '@graphql-hive/core';
+} from '@lib/core';
+export type { SupergraphSDLFetcherOptions } from '@lib/core';
 
 type CacheRecord = {
   callback: CollectUsageCallback;

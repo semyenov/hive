@@ -2,6 +2,7 @@
 export default {
   siteUrl: process.env.SITE_URL || 'https://graphql-hive.com',
   generateIndexSitemap: false,
+  autoLastmod: true,
   additionalPaths: config => [
     {
       loc: config.siteUrl.replace(/\/$/, '') + '/federation-gateway-audit',

@@ -1,1 +1,1 @@
-export { useHiveMDXComponents as useMDXComponents } from '@theguild/components/server';
+export { useMDXComponents } from '@theguild/components/server';

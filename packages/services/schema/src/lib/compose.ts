@@ -4,8 +4,8 @@ import { DocumentNode, GraphQLError, parse, print, printSchema } from 'graphql';
 import { validateSDL } from 'graphql/validation/validate.js';
 import { z } from 'zod';
 import { composeAndValidate, compositionHasErrors } from '@apollo/federation';
-import type { ErrorCode } from '@graphql-hive/external-composition';
 import { ServiceLogger, SpanKind, trace } from '@hive/service-common';
+import type { ErrorCode } from '@lib/external-composition';
 import * as Sentry from '@sentry/node';
 import {
   composeServices as nativeComposeServices,

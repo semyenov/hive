@@ -8,15 +8,15 @@ import {
   HivePluginOptions,
   isHiveClient,
   SupergraphSDLFetcherOptions,
-} from '@graphql-hive/core';
+} from '@lib/core';
 
 export {
   atLeastOnceSampler,
   createSchemaFetcher,
   createServicesFetcher,
   createSupergraphSDLFetcher,
-} from '@graphql-hive/core';
-export type { SupergraphSDLFetcherOptions } from '@graphql-hive/core';
+} from '@lib/core';
+export type { SupergraphSDLFetcherOptions } from '@lib/core';
 
 export function createSupergraphManager({
   pollIntervalInMs,

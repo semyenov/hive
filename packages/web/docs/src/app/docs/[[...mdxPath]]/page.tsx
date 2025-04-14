@@ -1,12 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { ResolvingMetadata } from 'next';
-import { generateStaticParamsFor, importPage } from 'nextra/pages';
+import { importPage } from 'nextra/pages';
 import { NextPageProps } from '@theguild/components';
-import { useMDXComponents } from '../../../../mdx-components.js';
+import { useHiveMDXComponents as useMDXComponents } from '@theguild/components/server';
 import { ConfiguredGiscus } from '../../../components/configured-giscus';
 import { metadata as rootMetadata } from '../../layout';
-
-export const generateStaticParams = generateStaticParamsFor('mdxPath');
 
 export async function generateMetadata(
   props: NextPageProps<'...mdxPath'>,
@@ -14,6 +12,7 @@ export async function generateMetadata(
 ) {
   const { mdxPath } = await props.params;
   const { metadata } = await importPage(mdxPath);
+
   const docsMetadata = {
     ...metadata,
     ...(mdxPath?.[0] === 'gateway' && {

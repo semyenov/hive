@@ -15,7 +15,7 @@ type NormalizedResult = ReturnType<typeof normalizePages>;
 
 function createBreadcrumb(normalizedResult: NormalizedResult) {
   const activePaths = normalizedResult.activePath.slice();
-
+  console.log(activePaths);
   if (activePaths[0]?.route !== '/') {
     // Add the home page to all pages except the home page
     activePaths.unshift({

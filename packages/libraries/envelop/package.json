@@ -1,5 +1,5 @@
 {
-  "name": "@graphql-hive/envelop",
+  "name": "@lib/envelop",
   "version": "0.35.1",
   "type": "module",
   "description": "GraphQL Hive + GraphQL Envelop",
@@ -44,10 +44,10 @@
   },
   "peerDependencies": {
     "@envelop/types": "^5.0.0",
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^16.10.0"
   },
   "dependencies": {
-    "@graphql-hive/core": "workspace:*",
+    "@lib/core": "workspace:*",
     "@apollo/server": "^4.12.0"
   },
   "devDependencies": {

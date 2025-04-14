@@ -122,12 +122,11 @@ jobs:
     steps:
       - name: Extract published version
         if:
-          needs.npm.outputs.published && contains(needs.npm.outputs.publishedPackages,
-          '"@graphql-hive/cli"')
+          needs.npm.outputs.published && contains(needs.npm.outputs.publishedPackages, '"@lib/cli"')
         id: cli
         run: |
           echo '${{needs.npm.outputs.publishedPackages}}' > cli-ver.json
-          VERSION=`echo $(jq -r '.[] | select(.name | endswith("@graphql-hive/cli")).version' cli-ver.json)`
+          VERSION=`echo $(jq -r '.[] | select(.name | endswith("@lib/cli")).version' cli-ver.json)`
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "published=true" >> "$GITHUB_OUTPUT"
 

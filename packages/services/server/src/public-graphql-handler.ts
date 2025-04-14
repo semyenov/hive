@@ -1,10 +1,10 @@
 import { type FastifyBaseLogger, type RouteHandlerMethod } from 'fastify';
 import { createYoga, useExecutionCancellation, useExtendContext, useSchema } from 'graphql-yoga';
 import { useGraphQLModules } from '@envelop/graphql-modules';
-import { useHive } from '@graphql-hive/yoga';
 import { type Registry } from '@hive/api';
 import { type AuthN } from '@hive/api/modules/auth/lib/authz';
 import { cleanRequestId, TracingInstance } from '@hive/service-common';
+import { useHive } from '@lib/yoga';
 import { runWithAsyncContext } from '@sentry/node';
 import { asyncStorage } from './async-storage';
 import { type HiveUsageConfig } from './environment';

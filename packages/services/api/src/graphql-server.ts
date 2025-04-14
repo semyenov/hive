@@ -9,6 +9,7 @@ export async function createGraphQLServer() {
     resolvers: [UserResolver],
     globalMiddlewares: [AuthMiddleware],
     validate: true,
+    emitSchemaFile: true,
   });
 
   return new ApolloServer({

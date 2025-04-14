@@ -5,7 +5,7 @@ import type {
   GraphQlInterfaceTypeResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLInterfaceType: GraphQLInterfaceTypeResolvers = {
+export const GraphQLInterfaceType: GraphQlInterfaceTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.INTERFACE_TYPE_DEFINITION),
   name: (t) => t.entity.name,
   description: (t) => t.entity.description ?? null,

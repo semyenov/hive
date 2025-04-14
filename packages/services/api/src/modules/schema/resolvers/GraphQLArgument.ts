@@ -4,7 +4,7 @@ import type {
   GraphQlArgumentResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLArgument: GraphQLArgumentResolvers = {
+export const GraphQLArgument: GraphQlArgumentResolvers = {
   name: (a) => a.entity.name,
   description: (a) => a.entity.description ?? null,
   type: (a) => a.entity.type,

@@ -12,7 +12,7 @@ import type {
  *
  * If you want to skip this file generation, remove the mapper or update the pattern in the `resolverGeneration.object` config.
  */
-export const GraphQLDocument: GraphQLDocumentResolvers = {
+export const GraphQLDocument: GraphQlDocumentResolvers = {
   /* Implement GraphQLDocument resolver logic here */
   insightsHash: (document) => {
     return document.internalHash;

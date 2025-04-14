@@ -4,7 +4,7 @@ import type {
   GraphQlFieldResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLField: GraphQLFieldResolvers = {
+export const GraphQLField: GraphQlFieldResolvers = {
   name: (f) => f.entity.name,
   description: (f) => f.entity.description ?? null,
   isDeprecated: (f) => typeof f.entity.deprecationReason === "string",

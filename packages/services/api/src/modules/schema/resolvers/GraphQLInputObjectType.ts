@@ -5,7 +5,7 @@ import type {
   GraphQlInputObjectTypeResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLInputObjectType: GraphQLInputObjectTypeResolvers = {
+export const GraphQLInputObjectType: GraphQlInputObjectTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.INPUT_OBJECT_TYPE_DEFINITION),
   name: (t) => t.entity.name,
   description: (t) => t.entity.description ?? null,

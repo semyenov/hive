@@ -5,7 +5,7 @@ import type {
   GraphQlUnionTypeResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLUnionType: GraphQLUnionTypeResolvers = {
+export const GraphQLUnionType: GraphQlUnionTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.UNION_TYPE_DEFINITION),
   name: (t) => t.entity.name,
   description: (t) => t.entity.description ?? null,

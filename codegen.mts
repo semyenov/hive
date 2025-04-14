@@ -1,76 +1,80 @@
-import { defineConfig } from '@eddeee888/gcg-typescript-resolver-files';
-import { type CodegenConfig } from '@graphql-codegen/cli';
-import { addTypenameSelectionDocumentTransform } from '@graphql-codegen/client-preset';
+import { defineConfig } from "@eddeee888/gcg-typescript-resolver-files";
+import { type CodegenConfig } from "@graphql-codegen/cli";
+import { addTypenameSelectionDocumentTransform } from "@graphql-codegen/client-preset";
 
 const config: CodegenConfig = {
-  schema: './packages/services/api/src/modules/*/module.graphql.ts',
+  schema: "./packages/services/api/src/modules/*/module.graphql.ts",
   emitLegacyCommonJSImports: true,
   generates: {
     // API
-    './packages/services/api/src': defineConfig(
+    "./packages/services/api/src": defineConfig(
       {
         typeDefsFilePath: false,
         mergeSchema: {
-          path: '../../../../schema.graphql',
+          path: "../../../../schema.graphql",
           config: {
             includeDirectives: true,
-            append: '\n\n directive @oneOf on INPUT_OBJECT',
+            append: "\n\n directive @oneOf on INPUT_OBJECT",
           },
         },
-        resolverGeneration: 'minimal',
-        resolverMainFileMode: 'modules',
-        resolverTypesPath: './__generated__/types.ts',
+        resolverGeneration: "minimal",
+        resolverMainFileMode: "modules",
+        resolverTypesPath: "./__generated__/types.ts",
         scalarsOverrides: {
           DateTime: {
-            type: { input: 'Date', output: 'Date | string | number' },
+            type: { input: "Date", output: "Date | string | number" },
           },
-          Date: { type: 'string' },
-          SafeInt: { type: 'number' },
-          ID: { type: 'string' },
+          Date: { type: "string" },
+          SafeInt: { type: "number" },
+          ID: { type: "string" },
         },
         typesPluginsConfig: {
           immutableTypes: true,
-          // namingConvention: 'change-case-all#pascalCase', // TODO: This is triggering a warning about type name not working 100% of the time. eddeee888 to fix in Server Preset by using `meta` field.
-          contextType: 'GraphQLModules.ModuleContext',
+          namingConvention: "change-case-all#pascalCase", // TODO: This is triggering a warning about type name not working 100% of the time. eddeee888 to fix in Server Preset by using `meta` field.
+          contextType: "GraphQLModules.ModuleContext",
           enumValues: {
-            ProjectType: '../shared/entities#ProjectType',
+            ProjectType: "../shared/entities#ProjectType",
             NativeFederationCompatibilityStatus:
-              '../shared/entities#NativeFederationCompatibilityStatus',
-            TargetAccessScope: '../modules/auth/providers/target-access#TargetAccessScope',
-            ProjectAccessScope: '../modules/auth/providers/project-access#ProjectAccessScope',
+              "../shared/entities#NativeFederationCompatibilityStatus",
+            TargetAccessScope:
+              "../modules/auth/providers/target-access#TargetAccessScope",
+            ProjectAccessScope:
+              "../modules/auth/providers/project-access#ProjectAccessScope",
             OrganizationAccessScope:
-              '../modules/auth/providers/organization-access#OrganizationAccessScope',
-            SupportTicketPriority: '../shared/entities#SupportTicketPriority',
-            SupportTicketStatus: '../shared/entities#SupportTicketStatus',
+              "../modules/auth/providers/organization-access#OrganizationAccessScope",
+            SupportTicketPriority: "../shared/entities#SupportTicketPriority",
+            SupportTicketStatus: "../shared/entities#SupportTicketStatus",
           },
           resolversNonOptionalTypename: {
             interfaceImplementingType: true,
             unionMember: true,
             excludeTypes: [
-              'TokenInfoPayload',
-              'OrganizationByInviteCodePayload',
-              'JoinOrganizationPayload',
-              'Schema',
-              'GraphQLNamedType',
+              "TokenInfoPayload",
+              "OrganizationByInviteCodePayload",
+              "JoinOrganizationPayload",
+              "Schema",
+              "GraphQLNamedType",
             ],
           },
         },
       },
       {
         hooks: {
-          afterOneFileWrite: ['prettier --write'],
+          afterOneFileWrite: ["prettier --write"],
         },
       },
     ),
-    './packages/web/app/src/gql/': {
-      documents: ['./packages/web/app/src/(components|lib|pages|server)/**/*.ts(x)?'],
-      preset: 'client',
+    "./packages/web/app/src/gql/": {
+      documents: [
+        "./packages/web/app/src/(components|lib|pages|server)/**/*.ts(x)?",
+      ],
+      preset: "client",
       config: {
         scalars: {
-          DateTime: 'string',
-          Date: 'string',
-          SafeInt: 'number',
-          JSONSchemaObject: 'json-schema-typed#JSONSchema',
+          DateTime: "string",
+          Date: "string",
+          SafeInt: "number",
+          JSONSchemaObject: "json-schema-typed#JSONSchema",
         },
       },
       presetConfig: {
@@ -79,41 +83,41 @@ const config: CodegenConfig = {
       plugins: [],
       documentTransforms: [addTypenameSelectionDocumentTransform],
     },
-    './packages/web/app/src/gql/schema.ts': {
-      plugins: ['urql-introspection'],
+    "./packages/web/app/src/gql/schema.ts": {
+      plugins: ["urql-introspection"],
       config: {
         useTypeImports: true,
-        module: 'es2015',
+        module: "es2015",
       },
     },
     // CLI
-    './packages/libraries/cli/src/gql/': {
-      documents: ['./packages/libraries/cli/src/(commands|helpers)/**/*.ts'],
-      preset: 'client',
+    "./packages/libraries/cli/src/gql/": {
+      documents: ["./packages/libraries/cli/src/(commands|helpers)/**/*.ts"],
+      preset: "client",
       plugins: [],
       config: {
         useTypeImports: true,
       },
     },
     // Client
-    'packages/libraries/core/src/client/__generated__/types.ts': {
-      documents: ['./packages/libraries/core/src/client/**/*.ts'],
+    "packages/libraries/core/src/client/__generated__/types.ts": {
+      documents: ["./packages/libraries/core/src/client/**/*.ts"],
       config: {
         flattenGeneratedTypes: true,
         onlyOperationTypes: true,
       },
-      plugins: ['typescript', 'typescript-operations'],
+      plugins: ["typescript", "typescript-operations"],
     },
     // Integration tests
-    './integration-tests/testkit/gql/': {
-      documents: ['./integration-tests/(testkit|tests)/**/*.ts'],
-      preset: 'client',
+    "./integration-tests/testkit/gql/": {
+      documents: ["./integration-tests/(testkit|tests)/**/*.ts"],
+      preset: "client",
       plugins: [],
       config: {
         scalars: {
-          DateTime: 'string',
-          Date: 'string',
-          SafeInt: 'number',
+          DateTime: "string",
+          Date: "string",
+          SafeInt: "number",
         },
       },
     },

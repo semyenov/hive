@@ -5,7 +5,7 @@ import type {
   OidcIntegrationResolvers,
 } from "./../../../__generated__/types";
 
-export const OIDCIntegration: OIDCIntegrationResolvers = {
+export const OIDCIntegration: OidcIntegrationResolvers = {
   id: (oidcIntegration) => oidcIntegration.id,
   tokenEndpoint: (oidcIntegration) => oidcIntegration.tokenEndpoint,
   userinfoEndpoint: (oidcIntegration) => oidcIntegration.userinfoEndpoint,

@@ -5,7 +5,7 @@ import type {
   GraphQlObjectTypeResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLObjectType: GraphQLObjectTypeResolvers = {
+export const GraphQLObjectType: GraphQlObjectTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.OBJECT_TYPE_DEFINITION),
   name: (t) => t.entity.name,
   description: (t) => t.entity.description ?? null,

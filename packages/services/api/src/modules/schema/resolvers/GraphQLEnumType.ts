@@ -5,7 +5,7 @@ import type {
   GraphQlEnumTypeResolvers,
 } from "./../../../__generated__/types";
 
-export const GraphQLEnumType: GraphQLEnumTypeResolvers = {
+export const GraphQLEnumType: GraphQlEnumTypeResolvers = {
   __isTypeOf: __isTypeOf(Kind.ENUM_TYPE_DEFINITION),
   name: (t) => t.entity.name,
   description: (t) => t.entity.description ?? null,
